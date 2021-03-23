@@ -15,7 +15,7 @@ workflows:
             - |
                 # build Android
                 cd android
-                ./gradlew assembleDebug
+                ./gradlew assembleRelease
             - |
                 # build iOS
                 cd ios
