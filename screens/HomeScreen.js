@@ -19,6 +19,7 @@ const HomeScreen=()=>
   const [currentUrl, setCurrentUrl] = useState('')
   
 
+  const [pos,setpos]=useState(false)
   let jsCode = `
         var cookie={};
         document.cookie.split('; ').forEach(function(i){cookie[i.split('=')[0]]=i.split('=')[1]});
@@ -50,8 +51,7 @@ const HomeScreen=()=>
   
     const refc=()=>
   {
-    if (webviewRef.current)  webviewRef.current.reload()
-  
+    if (webviewRef.current )  webviewRef.current.reload()
   
     setrefr(true)
   }
@@ -107,7 +107,8 @@ const HomeScreen=()=>
 <ScrollView 
 
 
-refreshControl={<RefreshControl refreshing={refr}
+refreshControl={ <RefreshControl refreshing={refr}
+enabled={pos}
 onRefresh={refc}
 ></RefreshControl>}
 style={{height:height,width:width,position:'absolute'}}>
@@ -120,9 +121,14 @@ ref={webviewRef}
 style={{flex:1,height:height,width:width}}
   //  onLoadProgress={()=>setload(true)}
     onLoadEnd={()=>{setload(false),setrefr(false),console.log('success')}}
-    
 
-    pullToRefreshEnabled={true}
+    
+    onScroll={syntheticEvent => {
+      const { contentOffset } = syntheticEvent.nativeEvent
+     setpos(contentOffset.y==0)
+    }}
+
+pullToRefreshEnabled={true}
     allowFileAccessFromFileURLs={true}
     allowingReadAccessToURL={true}
     allowsBackForwardNavigationGestures={true}
@@ -141,13 +147,14 @@ style={{flex:1,height:height,width:width}}
 
       onMessage={(event)=> console.log(event.nativeEvent.data)}
       injectedJavaScript={jsCode}
-    oninte
+    
    // onNavigationStateChange={}
    onLoadStart={()=>setload(true)}
      onHttpError={()=>errorpage()}
    onError={()=>errorpage()}
      javaScriptEnabled={true}
      cacheEnabled={true}
+     
      sharedCookiesEnabled={true}
      thirdPartyCookiesEnabled={true}
      >
