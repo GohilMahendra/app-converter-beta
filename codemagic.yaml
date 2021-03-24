@@ -6,8 +6,8 @@ workflows:
         name: React Native App
         environment:
             vars:
-                XCODE_WORKSPACE: "{{ ADD WORKSPACE NAME HERE }}"
-                XCODE_SCHEME: "{{ ADD SCHEME NAME HERE }}"
+                XCODE_WORKSPACE: "appconverter.xcodeproj"
+                XCODE_SCHEME: "appconverter"
             node: latest
         scripts:
             - npm install
@@ -15,7 +15,7 @@ workflows:
             - |
                 # build Android
                 cd android
-                ./gradlew assembleDebug
+                ./gradlew assembleRelease
             - |
                 # build iOS
                 cd ios
