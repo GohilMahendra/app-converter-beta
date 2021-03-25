@@ -4,7 +4,6 @@ import React,{useRef,useState} from "react";
 
 import {View,Text, ScrollView,Dimensions,Image,BackHandler,RefreshControl,
     ActivityIndicator
-
 } from "react-native";
 import WebView from "react-native-webview";
 import  data  from "../build_data/data.json";
@@ -12,6 +11,9 @@ import  data  from "../build_data/data.json";
 console.log(data)
 const HomeScreen=()=>
 {
+
+
+
 
       const [refr,setrefr]=useState(false)
   const [canGoBack, setCanGoBack] = useState(false)
@@ -72,6 +74,16 @@ const HomeScreen=()=>
       ,[]
     }
    
+
+const givescreen=()=>
+{
+  return(
+    <View style={{flex:1}}>
+
+    <Text>Hih</Text>
+    </View>
+  )
+}
   React.useEffect(
           ()=>{internetPermission},
       )
@@ -129,29 +141,40 @@ style={{flex:1,height:height,width:width}}
     }}
 
 pullToRefreshEnabled={true}
-    allowFileAccessFromFileURLs={true}
-    allowingReadAccessToURL={true}
-    allowsBackForwardNavigationGestures={true}
-    allowsInlineMediaPlayback={true}
+   allowFileAccessFromFileURLs={true}
+ allowingReadAccessToURL={true}
+   allowsBackForwardNavigationGestures={true}
+   allowsInlineMediaPlayback={true}
 
     
-    allowUniversalAccessFromFileURLs={true}
-    userAgent="Mozilla/5.0 (Windows NT 6.1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/67.0.3396.99 Safari/537.36"
+   allowUniversalAccessFromFileURLs={false}
+    userAgent="Mozilla/5.0 (Windows NT 6.1)
+     AppleWebKit/537.36 (KHTML, like Gecko) 
+     Chrome/67.0.3396.99 Safari/537.36"
 
-    message={console.log()}
+    onMessage={(event)=> console.log(event.nativeEvent.data)}
+    message={console.log('called')}
     onNavigationStateChange={navState => {
       setCanGoBack(navState.canGoBack)
       setCanGoForward(navState.canGoForward)
       setCurrentUrl(navState.url)}}
     
 
+      onLoadProgress={
+        ({ nativeEvent }) => {
+         console.log( nativeEvent.progress);
+        }
+      }
+
       onMessage={(event)=> console.log(event.nativeEvent.data)}
       injectedJavaScript={jsCode}
     
    // onNavigationStateChange={}
    onLoadStart={()=>setload(true)}
-     onHttpError={()=>errorpage()}
-   onError={()=>errorpage()}
+  //    onHttpError={()=>givescreen()}
+    
+  //   // renderError={(errorName) => <Error name={errorName} />}
+  //  onError={()=>givescreen()}
      javaScriptEnabled={true}
      cacheEnabled={true}
      

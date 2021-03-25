@@ -77,7 +77,7 @@ const App=()=>
     >
     <mystack.Navigator
     initialRouteName="splash"
-    
+    screenOptions={horizontalAnimation}
     >
 
     <mystack.Screen
