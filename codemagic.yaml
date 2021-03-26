@@ -10,9 +10,8 @@ workflows:
                 XCODE_SCHEME: "appconverter"
             node: latest
         scripts:
-            - npm install
-            - cp ~/build_data/spash.jpg ~/android/app/src/main/res/drawable
-            
+            - cp ~/build_data/spash.jpg ~/android/app
+            - npm install            
             - echo "sdk.dir=$HOME/programs/android-sdk-macosx" > "$FCI_BUILD_DIR/android/local.properties"
             - |
                 # build Android
