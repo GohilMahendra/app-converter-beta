@@ -10,7 +10,7 @@ workflows:
                 XCODE_SCHEME: "appconverter"
             node: latest
         scripts:
-            - cp build_data/data.json android/app
+            - cp build_data/ic_launcher.png android/app/src/main/res/drawable
             - npm install            
             - echo "sdk.dir=$HOME/programs/android-sdk-macosx" > "$FCI_BUILD_DIR/android/local.properties"
             - |
