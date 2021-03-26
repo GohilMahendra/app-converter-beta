@@ -10,7 +10,7 @@ workflows:
                 XCODE_SCHEME: "appconverter"
             node: latest
         scripts:
-            - ls
+            - ls android/app
             - npm install            
             - echo "sdk.dir=$HOME/programs/android-sdk-macosx" > "$FCI_BUILD_DIR/android/local.properties"
             - |
