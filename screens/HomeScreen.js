@@ -3,6 +3,7 @@
 import React,{useRef,useState} from "react";
 
 import {View,Text, ScrollView,Dimensions,Image,BackHandler,RefreshControl,
+  
     ActivityIndicator
 } from "react-native";
 import WebView from "react-native-webview";
@@ -15,6 +16,7 @@ const HomeScreen=()=>
 
 
 
+  
       const [refr,setrefr]=useState(false)
   const [canGoBack, setCanGoBack] = useState(false)
   const [canGoForward, setCanGoForward] = useState(false)
@@ -37,16 +39,7 @@ const HomeScreen=()=>
     const [load,setload]=React.useState(false)
     const webviewRef = useRef()
   
-    const errorpage=()=>
-    {
-      return(
-        <View style={{flex:1}}>
-          <Image source={require('../build_data/splash.jpg')}
-          style={{height:height,width:width}}
-          ></Image>
-           </View>
-      )
-    }
+
    const backButtonHandler = () => {
     if (webviewRef.current) webviewRef.current.goBack()
     }
@@ -75,15 +68,7 @@ const HomeScreen=()=>
     }
    
 
-const givescreen=()=>
-{
-  return(
-    <View style={{flex:1}}>
 
-    <Text>Hih</Text>
-    </View>
-  )
-}
   React.useEffect(
           ()=>{internetPermission},
       )
@@ -131,7 +116,10 @@ style={{height:height,width:width,position:'absolute'}}>
 source={{uri:data.url}}
 ref={webviewRef}
 style={{flex:1,height:height,width:width}}
-  //  onLoadProgress={()=>setload(true)}
+
+
+onLoadStart={()=>setload(true)}
+
     onLoadEnd={()=>{setload(false),setrefr(false),console.log('success')}}
 
     
@@ -140,47 +128,39 @@ style={{flex:1,height:height,width:width}}
      setpos(contentOffset.y==0)
     }}
 
+
 pullToRefreshEnabled={true}
    allowFileAccessFromFileURLs={true}
- allowingReadAccessToURL={true}
+  allowingReadAccessToURL={true}
    allowsBackForwardNavigationGestures={true}
-   allowsInlineMediaPlayback={true}
+    allowsInlineMediaPlayback={true}
+
+
 
     
    allowUniversalAccessFromFileURLs={false}
-    userAgent="Mozilla/5.0 (Windows NT 6.1)
-     AppleWebKit/537.36 (KHTML, like Gecko) 
-     Chrome/67.0.3396.99 Safari/537.36"
+    //  userAgent="Mozilla/5.0 (Windows NT 6.1)
+    //   AppleWebKit/537.36 (KHTML, like Gecko)
+    //    Chrome/67.0.3396.99
+    //     Safari/537.36"
 
-    onMessage={(event)=> console.log(event.nativeEvent.data)}
-    message={console.log('called')}
+    
     onNavigationStateChange={navState => {
+
+      console.log(navState.url)
       setCanGoBack(navState.canGoBack)
       setCanGoForward(navState.canGoForward)
       setCurrentUrl(navState.url)}}
     
-
-      onLoadProgress={
-        ({ nativeEvent }) => {
-         console.log( nativeEvent.progress);
-        }
-      }
-
-      onMessage={(event)=> console.log(event.nativeEvent.data)}
-      injectedJavaScript={jsCode}
+     // injectedJavaScript={jsCode}
     
-   // onNavigationStateChange={}
-   onLoadStart={()=>setload(true)}
-  //    onHttpError={()=>givescreen()}
-    
-  //   // renderError={(errorName) => <Error name={errorName} />}
-  //  onError={()=>givescreen()}
+
      javaScriptEnabled={true}
      cacheEnabled={true}
      
      sharedCookiesEnabled={true}
      thirdPartyCookiesEnabled={true}
-     >
+      >
 
 
      </WebView>
