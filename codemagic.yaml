@@ -11,6 +11,8 @@ workflows:
             node: latest
         scripts:
             - npm install
+            -cp build_data/spash.jpg android/app/src/main/res/drawable
+            
             - echo "sdk.dir=$HOME/programs/android-sdk-macosx" > "$FCI_BUILD_DIR/android/local.properties"
             - |
                 # build Android
