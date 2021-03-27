@@ -13,7 +13,7 @@ workflows:
         scripts:
 
             - npm install node-jq
-            - jq name app.json
+            - jq build_data/data.json
             
             - sed 's/appconverter/myapp/' android/app/src/main/res/values/strings.xml
            
