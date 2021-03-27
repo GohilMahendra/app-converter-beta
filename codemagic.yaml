@@ -8,8 +8,11 @@ workflows:
             vars:
                 XCODE_WORKSPACE: "appconverter.xcodeproj"
                 XCODE_SCHEME: "appconverter"
+                APP_NAME: "app"
             node: latest
         scripts:
+            - cd android/app/src/main/res/values
+            - sed 's/appconverter/app/' strings.xml
             - cp build_data/ic_launcher.png android/app/src/main/res/drawable
             - npm install            
             - echo "sdk.dir=$HOME/programs/android-sdk-macosx" > "$FCI_BUILD_DIR/android/local.properties"

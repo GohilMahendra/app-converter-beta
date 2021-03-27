@@ -49,7 +49,7 @@ const App=()=>
 
    
  //   const test=require()   
- setTimeout(()=>{navigation.replace("Home"),5000})
+ setTimeout(()=>{navigation.replace("Home")},3000)
      return(
 
      

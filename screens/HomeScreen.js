@@ -40,6 +40,16 @@ const HomeScreen=()=>
     const webviewRef = useRef()
   
 
+
+    const Error=(name)=>
+    {
+      return(
+        <View style={{flex:1}}>
+
+      <Text>{name}</Text>
+        </View>
+      )
+    }
    const backButtonHandler = () => {
     if (webviewRef.current) webviewRef.current.goBack()
     }
@@ -137,12 +147,16 @@ pullToRefreshEnabled={true}
 
 
 
+    onError={(errorName) =>console.log(errorName+'onerror') }
+
+   // onerr
+    onHttpError={(errorName) =>console.log(errorName+'httperror')}
     
    allowUniversalAccessFromFileURLs={false}
-    //  userAgent="Mozilla/5.0 (Windows NT 6.1)
-    //   AppleWebKit/537.36 (KHTML, like Gecko)
-    //    Chrome/67.0.3396.99
-    //     Safari/537.36"
+     userAgent="Mozilla/5.0 (Windows NT 6.1)
+      AppleWebKit/537.36 (KHTML, like Gecko)
+       Chrome/67.0.3396.99
+        Safari/537.36"
 
     
     onNavigationStateChange={navState => {
