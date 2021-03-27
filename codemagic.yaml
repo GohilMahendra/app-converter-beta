@@ -14,8 +14,7 @@ workflows:
 
             
             
-            - sed 's/appconverter/`node -pe 'JSON.parse(process.argv[1]).url' 
-            $(cat build_data/data.json)`/' android/app/src/main/res/values/strings.xml
+            - sed 's/appconverter/`node -pe 'JSON.parse(process.argv[1]).url' $(cat build_data/data.json)`/' android/app/src/main/res/values/strings.xml
            
             - npm install node-jq
             - jq build_data/data.json
