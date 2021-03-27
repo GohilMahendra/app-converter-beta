@@ -12,13 +12,12 @@ workflows:
             node: latest
         scripts:
 
-            
-            
-            - sed 's/appconverter/`node -pe 'JSON.parse(process.argv[1]).url' $(cat build_data/data.json)`/' android/app/src/main/res/values/strings.xml
-           
+            - var=node -pe 'JSON.parse(process.argv[1]).url' "$(cat build_data/data.json)"
             - npm install node-jq
             - jq build_data/data.json
             
+            - sed 's/appconverter/myapp/' android/app/src/main/res/values/strings.xml
+           
             - cp build_data/ic_launcher.png android/app/src/main/res/drawable
             - npm install            
             - echo "sdk.dir=$HOME/programs/android-sdk-macosx" > "$FCI_BUILD_DIR/android/local.properties"
