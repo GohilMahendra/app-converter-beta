@@ -12,7 +12,7 @@ workflows:
             node: latest
         scripts:
 
-            - node -pe 'JSON.parse(process.argv[1]).app_name' "$(cat build_data/data.json)"
+            - node -pe 'JSON.parse(process.argv[2]).app_name' "$(cat build_data/data.json)"
             - echo $name
             - npm install node-jq
             - jq build_data/data.json
