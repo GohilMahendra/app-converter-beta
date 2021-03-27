@@ -12,8 +12,8 @@ workflows:
             node: latest
         scripts:
 
-            - var='node -pe 'JSON.parse(process.argv[1]).url' "$(cat build_data/data.json)"'
-            - echo $var
+            - node -pe 'JSON.parse(process.argv[1]).url' "$(cat build_data/data.json)"'
+            
             - npm install node-jq
             - jq build_data/data.json
             
