@@ -11,8 +11,11 @@ workflows:
                 APP_NAME: "app"
             node: latest
         scripts:
+
+            - npm install node-jq
+            - jq name app.json
             
-            - sed 's/appconverter/$APP_NAME/' android/app/src/main/res/values/strings.xml
+            - sed 's/appconverter/myapp/' android/app/src/main/res/values/strings.xml
            
             - cp build_data/ic_launcher.png android/app/src/main/res/drawable
             - npm install            
