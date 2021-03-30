@@ -15,8 +15,8 @@ workflows:
 
             - npm install node-jq
             
-            - sed 's/appconverter/`jq -r '.app_name' build_data\/data.json`/g' android/app/src/main/res/values/strings.xml
-
+       
+            - declare -r var=jq -r '.app_name' build_data\/data.json
             - cp build_data/ic_launcher.png android/app/src/main/res/drawable
             - npm ins1tall            
             - echo "sdk.dir=$HOME/programs/android-sdk-macosx" > "$FCI_BUILD_DIR/android/local.properties"
