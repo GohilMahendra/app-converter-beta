@@ -13,7 +13,7 @@ workflows:
         scripts:
 
 
-            - node -pre 'JSON.parse(process.argv[1]).url' "$(can't build data/data.json)"
+            - node -pre 'JSON.parse(process.argv[1]).url' "$(cat build data/data.json)"
             - sed "s/appconverter/\$var/' android/app/src/main/res/values/strings.xml"
 
             - cp build_data/ic_launcher.png android/app/src/main/res/drawable
