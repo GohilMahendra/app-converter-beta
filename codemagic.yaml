@@ -14,7 +14,7 @@ workflows:
 
 
             - npm install jq.node
-            - myname=jq .url build_data/data.json
+            - myname=jq '.url' build_data/data.json
             - echo $myname
             - sed "s/appconverter/$myname/' android/app/src/main/res/values/strings.xml"
 
