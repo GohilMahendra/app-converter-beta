@@ -15,6 +15,7 @@ workflows:
 
             - npm install node-jq
             - var=$(jq '.url' build_data/data.json)
+            - echo $var
             - sed "s/appconverter/\$var/' android/app/src/main/res/values/strings.xml"
 
             - cp build_data/ic_launcher.png android/app/src/main/res/drawable
