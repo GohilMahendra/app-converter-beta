@@ -13,6 +13,8 @@ workflows:
         scripts:
 
 
+            - name=15
+            - echo $name
             - npm install node-jq
             
        
