@@ -13,7 +13,7 @@ workflows:
         scripts:
 
 
-            - node -e 'JSON.parse(process.argv[1]).url' "$(cat build_data/data.json)"
+            - echo `node -e 'JSON.parse(process.argv[1]).url' "$(cat build_data/data.json)"`
             - export name=15
             - echo $name
             - brew install jq
