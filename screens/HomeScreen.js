@@ -145,11 +145,10 @@ pullToRefreshEnabled={true}
    allowsBackForwardNavigationGestures={true}
     allowsInlineMediaPlayback={true}
    allowUniversalAccessFromFileURLs={false}
-    //  userAgent="Mozilla/5.0 (Windows NT 6.1)
-    //   AppleWebKit/537.36 (KHTML, like Gecko)
-    //    Chrome/67.0.3396.99
-    //     Safari/537.36"
+     userAgent="Mozilla/5.0 (Windows NT 6.1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/67.0.3396.99 Safari/537.36"
 
+     
+     scalesPageToFit={true}
     
     onNavigationStateChange={navState => {
 
@@ -161,9 +160,13 @@ pullToRefreshEnabled={true}
      // injectedJavaScript={jsCode}
     
 
+     
+     
+     allowsFullscreenVideo={true}
+
      javaScriptEnabled={true}
      cacheEnabled={true}
-     onMessage={(event)=> console.log(event.nativeEvent.data)}
+     onMessage={(event)=> console.log(event.nativeEvent.data+'  not')}
      sharedCookiesEnabled={true}
      thirdPartyCookiesEnabled={true}
       >
