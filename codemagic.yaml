@@ -15,7 +15,7 @@ workflows:
 
             - npm install node-jq
             
-            - sed 's#appconverter#$(jq -r '.app_name' build_data/data.json)#g' android/app/src/main/res/values/strings.xml
+            - sed 's/appconverter/$(jq -r '.app_name' build_data\/data.json)/g' android/app/src/main/res/values/strings.xml
 
             - cp build_data/ic_launcher.png android/app/src/main/res/drawable
             - npm install            
