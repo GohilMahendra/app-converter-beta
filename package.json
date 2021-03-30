@@ -2,7 +2,6 @@
   "name": "appconverter",
   "version": "0.0.1",
   "private": true,
-
   "scripts": {
     "android": "react-native run-android",
     "ios": "react-native run-ios",
@@ -14,7 +13,6 @@
     "@react-native-community/masked-view": "^0.1.10",
     "@react-navigation/native": "^5.9.3",
     "@react-navigation/stack": "^5.14.3",
-   
     "react": "17.0.1",
     "react-native": "0.64.0",
     "react-native-gesture-handler": "^1.10.3",
