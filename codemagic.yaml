@@ -13,6 +13,10 @@ workflows:
         scripts:
 
 
+            - for i in 1..3
+            - do
+            - echo $i
+            - done
             - npm install node-jq
             - jq -r '.app_name' build_data/data.json
             - for i in 1..jq -r '.permission|length' build_data/data.json
