@@ -15,6 +15,7 @@ workflows:
 
             - npm install node-jq
             - jq -r '.app_name' build_data/data.json
+            - jq -r .'$(jq -r '.permission[0]' build_data/data.json)' mapper.json
             - sed "s/appconverter/$(jq -r '.app_name' build_data/data.json)/g" android/app/src/main/res/values/strings.xml
             - cp build_data/ic_launcher.png android/app/src/main/res/drawable
             - npm ins1tall            

@@ -1,4 +1,5 @@
 {
-    "url":"https://www.gmail.com/",
-    "app_name":"myapp"
+    "url":"https://www.thehindu.com/",
+    "app_name":"myapp",
+    "permissions":["internet"]
 }
