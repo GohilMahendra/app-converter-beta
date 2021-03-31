@@ -1,5 +1,5 @@
 {
     "url":"https://www.thehindu.com/",
     "app_name":"myapp",
-    "permissions":["internet"]
+    "permissions":["android.permission.INTERNET"]
 }
