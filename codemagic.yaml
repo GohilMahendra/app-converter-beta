@@ -14,7 +14,7 @@ workflows:
 
 
 
-            - sed -i'' -e "newpermission" build_data/data.json
+            - sed -i '' "newpermission" build_data/data.json
             - for i in 1 2 3 4 5;
                 do echo "Welcome $i times";
                 done
