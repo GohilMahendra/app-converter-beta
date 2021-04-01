@@ -15,7 +15,7 @@ workflows:
 
 
 
-            - sed -i '' '3i\\\text to insert' build_data/data.json
+            - sed -i '' '3i\text to insert\' build_data/data.json
             - sed -i '' '3i\'$'\n''text to insert' build_data/data.json
             - cat build_data/data.json
             - sed -i'' -e '1i\'$'\newpermission' build_data/data.json
