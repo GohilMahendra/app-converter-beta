@@ -17,8 +17,8 @@ workflows:
 
             - brew install jq
            
-            - for i in $(seq 1 $(jq -r '.permissions|length' build_data/data.json));
-                do jq -r '.permissions[].$i build_data/data.json' ;
+            - for i in $(seq  0$(jq -r '.permissions|length' build_data/data.json));
+                do jq -r '.permissions[$i] build_data/data.json' ;
                 done
             - cat android/app/src/main/AndroidManifest.xml
             - jq -r '.appname' build_data/data.json
