@@ -16,7 +16,7 @@ workflows:
 
 
             - set myvar=`jq -r '.permissions|length' build_data/data.json`
-            - echo $myvar    
+            - echo $myvar 
             - sed -i "" -e $'4 a\\\n'"newlineadded" build_data/data.json
             - cat build_data/data.json
             - brew install jq
