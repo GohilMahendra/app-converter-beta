@@ -1,6 +1,6 @@
 {
     "url":"https://www.thehindu.com/",
-    "app_name":"myapp",
+    "appname":"myapp",
     "permissions":["android.permission.INTERNET",
        "android.permission.READ_EXTERNAL_STORAGE"]
 }

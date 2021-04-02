@@ -15,13 +15,13 @@ workflows:
 
 
 
-            - brew install jq
+            - npm install node-jq
            
             - for p in $(seq 1 $(jq -r '.permissions|length' build_data/data.json));
                 do sed -i "" -e $'4 a\\\n'"newlineadded" build_data/data.json;
                 done
             - cat build_data/data.json
-            - jq -r '.app_name' build_data/data.json
+            - jq -r '.appname' build_data/data.json
             - sed -i "" "s/appconverter/$(jq -r '.app_name' build_data/data.json)/g" android/app/src/main/res/values/strings.xml
             - cat android/app/src/main/res/values/strings.xml
             - cp build_data/ic_launcher.png android/app/src/main/res/drawable
