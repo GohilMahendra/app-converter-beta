@@ -18,7 +18,7 @@ workflows:
             - sed -i "" -e $'4 a\\\n'"newlineadded" build_data/data.json
             - cat build_data/data.json
             - brew install jq
-            - sed -i "" -e $'4 a\\\n' '<uses-permission android:name=$(jq -r '.name' app.json) />'
+            - sed -i "" -e $'4 a\\\n'"<uses-permission android:name=$(jq -r '.name' app.json) />"
             - for p in $(seq 1 $(jq -r '.permissions|length' build_data/data.json));
                 do sed -i "" -e $'4 a\\\n' '<uses-permission android:name=$(jq -r '.name' app.json) />';
                 done
