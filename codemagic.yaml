@@ -22,7 +22,7 @@ workflows:
                 done
             - cat android/app/src/main/AndroidManifest.xml
             - for i in $(seq 0 $(jq -r ".permissions_IOS|length-1" build_data/data.json));
-                do echo $i;echo $(jq -r "permissions_IOS[0]");
+                do echo $i;echo $(jq -r "permissions_IOS[0]" build_data/data.json);
                 done
  
             
