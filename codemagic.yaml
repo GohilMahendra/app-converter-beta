@@ -17,13 +17,13 @@ workflows:
 
             - brew install jq
            
-            - for i in $(seq 0 $(jq -r '.permissions|length' build_data/data.json)-1);
+            - for i in $(seq 0 $(jq -r '.permissions|length-1' build_data/data.json));
                 do sed -i "" -e $'4 a\\\n'" <uses-permission android:name="android.permissions.$(jq -r ".permissions[$i]" build_data/data.json)" />" android/app/src/main/AndroidManifest.xml;
                 done
           
-            - for i in $(seq 0 $(jq -r '.permissions_IOS|length' build_data/data.json)-1);
+            - for i in $(seq 0 $(jq -r '.permissions_IOS|length-1' build_data/data.json));
                 do sed -i "" -e $'40 a\\\n'"<key>$(jq -r ".permissions_IOS[$i]")</key> " ios/appconverter/info.plist;
-                do sed -i "" -e $'41 a\\\n'"<string>permission needed for further oprations</string> " ios/appconverter/info.plist;
+          
                 done
  
             - jq -r '.appname' build_data/data.json
