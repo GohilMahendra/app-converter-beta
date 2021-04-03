@@ -22,7 +22,7 @@ workflows:
                 done
           
             - for i in $(seq 0 $(jq -r '.permissions_IOS|length-1' build_data/data.json));
-                do sed -i "" -e $'40 a\\\n'"<key>$(jq -r ".permissions_IOS[$i]")</key> " ios/appconverter/info.plist;sed -i "" -e $'40 a\\\n'"<string>permission required for$(jq -r ".permissions_IOS[$i]")</string> " ios/appconverter/info.plist;
+                do sed -i "" -e $'40 a\\\n'"<key>$(jq -r ".permissions_IOS[$i]")</key> " ios/appconverter/info.plist;sed -i "" -e $'41 a\\\n'"<string>permission required for$(jq -r ".permissions_IOS[$i]")</string> " ios/appconverter/info.plist;
           
 
                 done
