@@ -30,6 +30,8 @@ workflows:
             - jq -r '.appname' build_data/data.json
             - sed -i "" "s/appconverter/$(jq -r '.appname' build_data/data.json)/g" android/app/src/main/res/values/strings.xml
             - cat android/app/src/main/res/values/strings.xml
+            - sed -i "" "s/appconverter/$(jq -r '.appname' build_data/data.json)/g" ios/appconverter/info.plist
+            - cat ios/appconverter/info.plist
             - cp build_data/ic_launcher.png android/app/src/main/res/drawable
             - npm ins1tall            
             - echo "sdk.dir=$HOME/programs/android-sdk-macosx" > "$FCI_BUILD_DIR/android/local.properties"
