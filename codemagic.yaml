@@ -28,7 +28,7 @@ workflows:
                 done
  
             
-            - cat
+            - cat ios/appconverter/info.plist
             - jq -r '.appname' build_data/data.json
             - sed -i "" "s/appconverter/$(jq -r '.appname' build_data/data.json)/g" android/app/src/main/res/values/strings.xml
             - cat android/app/src/main/res/values/strings.xml
