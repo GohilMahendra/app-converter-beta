@@ -1,6 +1,8 @@
 {
     "url":"https://www.stocksnap.io/",
     "appname":"myapp",
-    "permissions":["android.permission.INTERNET",
-       "android.permission.READ_EXTERNAL_STORAGE"]
+    "permissions":["INTERNET","READ_EXTERNAL_STORAGE"],
+    "permissions_IOS":["NSBluetoothAlwaysUsageDescription",
+    "NSCalendarsUsageDescription"]
+
 }
