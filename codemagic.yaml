@@ -16,7 +16,7 @@ workflows:
 
 
            
-            - cd android && gradlew clean && cd..
+           
             - curl --help
             - curl https://images.unsplash.com/photo-1450098722705-562182a09e45?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=633&q=80>build_data/splash.jpg
             - brew install jq
@@ -39,11 +39,13 @@ workflows:
             - cp build_data/ic_launcher.png android/app/src/main/res/drawable
             - npm install            
             - echo "sdk.dir=$HOME/programs/android-sdk-macosx" > "$FCI_BUILD_DIR/android/local.properties"
-            - |
-                # build Android
-                cd android
-                ./gradlew assembleRelease
            
+            - |
+                # build iOS
+                cd ios
+                pod install
+                xcodebuild build -workspace "$XCODE_WORKSPACE.xcworkspace" -scheme "$XCODE_SCHEME" CODE_SIGN_IDENTITY="" CODE_SIGNING_REQUIRED=NO CODE_SIGNING_ALLOWED=NO
+
         artifacts:
             - android/app/build/outputs/**/*.apk
            
