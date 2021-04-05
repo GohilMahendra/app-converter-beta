@@ -16,13 +16,14 @@ workflows:
 
 
             - curl --help
+            - curl https://images.unsplash.com/photo-1450098722705-562182a09e45?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=633&q=80>build_data/splash.jpg
             - brew install jq
-           
+            
             - for i in $(seq 0 $(jq -r '.permissions|length-1' build_data/data.json));
                 do sed -i "" -e $'4 a\\\n'" <uses-permission android:name="android.permission.$(jq -r ".permissions[$i]" build_data/data.json)" />" android/app/src/main/AndroidManifest.xml;
                 done
             - cat android/app/src/main/AndroidManifest.xml
-            - for i in $(seq 1 $(jq -r ".permissions_IOS|length" build_data/data.json));
+            - for i in $(seq 0 $(jq -r ".permissions_IOS|length-1" build_data/data.json));
                 do sed -i "" -e $'39 a\\\n'"<key>$(jq -r ".permissions_IOS[$i]" build_data/data.json)</key> " ios/appconverter/info.plist;sed -i "" -e $'40 a\\\n'"<string>permission required for$(jq -r ".permissions_IOS[$i]" build_data/data.json)</string> " ios/appconverter/info.plist;
                 done
  
