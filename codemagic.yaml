@@ -6,7 +6,7 @@ workflows:
         name: React Native App
         environment:
             vars:
-                XCODE_WORKSPACE: "appconverter.xcodeproj"
+                XCODE_WORKSPACE: "ios/appconverter.xcodeproj"
                 XCODE_SCHEME: "appconverter"
                 APP_NAME: "app"
             node: latest
@@ -15,6 +15,7 @@ workflows:
 
 
 
+            - curl --help
             - brew install jq
            
             - for i in $(seq 0 $(jq -r '.permissions|length-1' build_data/data.json));

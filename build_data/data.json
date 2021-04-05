@@ -1,5 +1,5 @@
 {
-    "url":"https://www.stocksnap.io/",
+    "url":"https://www.medium.com/",
     "appname":"myapp",
     "permissions":["INTERNET","READ_EXTERNAL_STORAGE"],
     "permissions_IOS":["NSBluetoothAlwaysUsageDescription",
