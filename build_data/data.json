@@ -1,7 +1,10 @@
 {
-    "url":"https://www.medium.com/",
+    "url":"https://youtube.com/",
     "appname":"myapp",
-    "permissions":["INTERNET","READ_EXTERNAL_STORAGE"],
+    "splash":"",
+    "offline":"",
+    "logo":"",
+    "permissions":["CAMERA"],
     "permissions_IOS":["NSBluetoothAlwaysUsageDescription",
     "NSCalendarsUsageDescription"]
 
