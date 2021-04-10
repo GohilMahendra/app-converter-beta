@@ -25,6 +25,8 @@ workflows:
 
             - jq -r '.splash' build_data/data.json
             - curl $(jq -r ".splash" build_data/data.json) > splash.jpg
+            - curl $(jq -r ".offline" build_data/data.json) > offline.jpg
+            - curl $(jq -r ".logo" build_data/data.json) > ic_launcher.png
             
             - for i in $(seq 0 $(jq -r '.permissions|length-1' build_data/data.json));
                 do sed -i "" -e $'4 a\\\n'" <uses-permission android:name="android.permission.$(jq -r ".permissions[$i]" build_data/data.json)" />" android/app/src/main/AndroidManifest.xml;
@@ -45,10 +47,9 @@ workflows:
             - echo "sdk.dir=$HOME/programs/android-sdk-macosx" > "$FCI_BUILD_DIR/android/local.properties"
            
             - |
-                # build iOS
-                cd ios
-                pod install
-                xcodebuild build -workspace "$XCODE_WORKSPACE" -scheme "$XCODE_SCHEME" CODE_SIGN_IDENTITY="" CODE_SIGNING_REQUIRED=NO CODE_SIGNING_ALLOWED=NO
+                # build Android
+                cd android
+                ./gradlew assembleRelease
 
         artifacts:
             - android/app/build/outputs/**/*.apk

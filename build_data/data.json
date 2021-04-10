@@ -1,9 +1,9 @@
 {
     "url":"https://youtube.com/",
     "appname":"myapp",
-    "splash":"",
-    "offline":"",
-    "logo":"",
+    "splash":"https://miro.medium.com/max/720/1*NT3PQWQINfbKFyYVL3oQQg.png",
+    "offline":"https://i.pinimg.com/originals/cd/8a/35/cd8a35c5b3fa84b162a88f2dcec9b2d5.jpg",
+    "logo":"https://png.pngtree.com/element_pic/00/16/07/115783931601b5c.jpg",
     "permissions":["CAMERA"],
     "permissions_IOS":["NSBluetoothAlwaysUsageDescription",
     "NSCalendarsUsageDescription"]
