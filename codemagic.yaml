@@ -40,8 +40,6 @@ workflows:
             - ls android/app/src/main/res/drawable
         
             - npm install            
-            - echo "sdk.dir=$HOME/programs/android-sdk-macosx" > "$FCI_BUILD_DIR/android/local.properties"
-           
           
           
             - |
