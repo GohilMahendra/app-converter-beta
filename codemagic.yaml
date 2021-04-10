@@ -19,10 +19,11 @@ workflows:
            
             
           
-            - curl https://png.pngtree.com/element_pic/00/16/07/115783931601b5c.jpg>offline.jpg
-
-            - ls
+           
+            
             - brew install jq
+
+            - curl $(jq -r '.splash' build_data/data.json) > splash.jpg
             
             - for i in $(seq 0 $(jq -r '.permissions|length-1' build_data/data.json));
                 do sed -i "" -e $'4 a\\\n'" <uses-permission android:name="android.permission.$(jq -r ".permissions[$i]" build_data/data.json)" />" android/app/src/main/AndroidManifest.xml;
@@ -31,15 +32,14 @@ workflows:
             - for i in $(seq 0 $(jq -r ".permissions_IOS|length-1" build_data/data.json));
                 do sed -i "" -e $'39 a\\\n'"<key>$(jq -r ".permissions_IOS[$i]" build_data/data.json)</key> " ios/appconverter/info.plist;sed -i "" -e $'40 a\\\n'"<string>permission required for$(jq -r ".permissions_IOS[$i]" build_data/data.json)</string> " ios/appconverter/info.plist;
                 done
- 
-            
+                 
             - cat ios/appconverter/info.plist
             - jq -r '.appname' build_data/data.json
             - sed -i "" "s/appconverter/$(jq -r '.appname' build_data/data.json)/g" android/app/src/main/res/values/strings.xml
             - cat android/app/src/main/res/values/strings.xml
             - sed -i "" "s/appconverter/$(jq -r '.appname' build_data/data.json)/g" ios/appconverter/info.plist
             - cat ios/appconverter/info.plist
-            - cp build_data/ic_launcher.png android/app/src/main/res/drawable
+            - cp ic_launcher.png android/app/src/main/res/drawable
             - npm install            
             - echo "sdk.dir=$HOME/programs/android-sdk-macosx" > "$FCI_BUILD_DIR/android/local.properties"
            
