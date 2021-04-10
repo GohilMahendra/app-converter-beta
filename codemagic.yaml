@@ -14,7 +14,7 @@ workflows:
 
 
            
-            - cd android && ./gradlew build          
+            - cd android && ./gradlew clean && cd ..          
             - brew install jq
 
             - jq -r '.splash' build_data/data.json
