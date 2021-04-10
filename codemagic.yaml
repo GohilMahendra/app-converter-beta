@@ -6,7 +6,7 @@ workflows:
         name: React Native App new
         environment:
             vars:
-                XCODE_WORKSPACE: 'appconverter.xcodeproj'
+                XCODE_WORKSPACE: 'appconverter'
                 XCODE_SCHEME: 'appconverter'
                 
             node: latest
@@ -48,6 +48,15 @@ workflows:
                 cd android
                 ./gradlew assembleBuild
 
+            - |
+                # build iOS
+                cd ios
+                pod install
+                xcodebuild build -workspace "$XCODE_WORKSPACE.xcworkspace" -scheme "$XCODE_SCHEME" CODE_SIGN_IDENTITY="" CODE_SIGNING_REQUIRED=NO CODE_SIGNING_ALLOWED=NO
+                artifacts:
+    
+           
         artifacts:
             - android/app/build/outputs/**/*.apk
-           
+            - $HOME/Library/Developer/Xcode/DerivedData/**/Build/**/*.app
+            - $HOME/Library/Developer/Xcode/DerivedData/**/Build/**/*.dSYM
