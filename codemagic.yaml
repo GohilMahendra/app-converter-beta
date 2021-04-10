@@ -42,11 +42,11 @@ workflows:
             - npm install            
             - echo "sdk.dir=$HOME/programs/android-sdk-macosx" > "$FCI_BUILD_DIR/android/local.properties"
            
-            - cd android && ./gradlew clean && cd .. 
+          
             - |
                 # build Android
                 cd android
-                ./gradlew assembleRelease
+                ./gradlew assembleBuild
 
         artifacts:
             - android/app/build/outputs/**/*.apk
