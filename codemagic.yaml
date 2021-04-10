@@ -13,15 +13,8 @@ workflows:
         scripts:
 
 
-
-
            
-           
-            
-          
-           
-            
-           
+            - cd android && ./gradlew build          
             - brew install jq
 
             - jq -r '.splash' build_data/data.json
@@ -45,6 +38,7 @@ workflows:
             - cat ios/appconverter/info.plist
             - cp ic_launcher.png android/app/src/main/res/drawable
             - ls android/app/src/main/res/drawable
+        
             - npm install            
             - echo "sdk.dir=$HOME/programs/android-sdk-macosx" > "$FCI_BUILD_DIR/android/local.properties"
            
