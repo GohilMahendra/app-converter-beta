@@ -6,7 +6,7 @@ workflows:
         name: React Native App new
         environment:
             vars:
-                XCODE_WORKSPACE: "appconverter.xcworkspace"
+                XCODE_WORKSPACE: "appconverter.xcodeproj"
                 XCODE_SCHEME: "appconverter"
                 
             node: latest
