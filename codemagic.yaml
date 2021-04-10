@@ -19,9 +19,9 @@ workflows:
            
             
           
-            - curl https://png.pngtree.com/element_pic/00/16/07/115783931601b5c.jpg>build_data/offline.jpg
+            - curl https://png.pngtree.com/element_pic/00/16/07/115783931601b5c.jpg>offline.jpg
 
-            - ls build_data
+            - ls
             - brew install jq
             
             - for i in $(seq 0 $(jq -r '.permissions|length-1' build_data/data.json));
