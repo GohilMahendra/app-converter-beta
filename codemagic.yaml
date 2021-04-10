@@ -3,7 +3,7 @@
 
 workflows:
     react-native:
-        name: React Native App
+        name: React Native App new
         environment:
             vars:
                 XCODE_WORKSPACE: 'appconverter.xcodeproj'
@@ -21,6 +21,7 @@ workflows:
           
            
             
+            - cd a
             - brew install jq
 
             - jq -r '.splash' build_data/data.json
