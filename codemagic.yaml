@@ -21,7 +21,7 @@ workflows:
           
            
             
-            - cd a
+           
             - brew install jq
 
             - jq -r '.splash' build_data/data.json
