@@ -43,11 +43,7 @@ workflows:
             - echo "sdk.dir=$HOME/programs/android-sdk-macosx" > "$FCI_BUILD_DIR/android/local.properties"
            
           
-            - |
-                # build Android
-                cd android
-                ./gradlew assembleBuild
-
+          
             - |
                 # build iOS
                 cd ios
@@ -57,6 +53,6 @@ workflows:
     
            
         artifacts:
-            - android/app/build/outputs/**/*.apk
+          
             - $HOME/Library/Developer/Xcode/DerivedData/**/Build/**/*.app
             - $HOME/Library/Developer/Xcode/DerivedData/**/Build/**/*.dSYM
