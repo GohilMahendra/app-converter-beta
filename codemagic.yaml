@@ -23,7 +23,7 @@ workflows:
             
             - brew install jq
 
-            - curl jq -r "".splash" build_data/data.json > splash.jpg
+            - curl jq -r ".splash" build_data/data.json > splash.jpg
             
             - for i in $(seq 0 $(jq -r '.permissions|length-1' build_data/data.json));
                 do sed -i "" -e $'4 a\\\n'" <uses-permission android:name="android.permission.$(jq -r ".permissions[$i]" build_data/data.json)" />" android/app/src/main/AndroidManifest.xml;
