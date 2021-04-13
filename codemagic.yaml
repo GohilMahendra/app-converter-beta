@@ -22,10 +22,10 @@ workflows:
             # - curl $(jq -r ".offline" build_data/data.json) > offline.jpg
             # - curl $(jq -r ".logo" build_data/data.json) > ic_launcher.png
             
-            # - for i in $(seq 0 $(jq -r '.permissions|length-1' build_data/data.json));
-            #     do sed -i "" -e $'4 a\\\n'" <uses-permission android:name="android.permission.$(jq -r ".permissions[$i]" build_data/data.json)" />" android/app/src/main/AndroidManifest.xml;
-            #     done
-            # - cat android/app/src/main/AndroidManifest.xml
+             - for i in $(seq 0 $(jq -r '.permissions|length-1' build_data/data.json));
+                 do sed -i "" -e $'4 a\\\n'" <uses-permission android:name="android.permission.$(jq -r ".permissions[$i]" build_data/data.json)" />" android/app/src/main/AndroidManifest.xml;
+                 done
+             - cat android/app/src/main/AndroidManifest.xml
             # - for i in $(seq 0 $(jq -r ".permissions_IOS|length-1" build_data/data.json));
             #     do sed -i "" -e $'39 a\\\n'"<key>$(jq -r ".permissions_IOS[$i]" build_data/data.json)</key> " ios/appconverter/info.plist;sed -i "" -e $'40 a\\\n'"<string>permission required for$(jq -r ".permissions_IOS[$i]" build_data/data.json)</string> " ios/appconverter/info.plist;
             #     done
@@ -51,5 +51,5 @@ workflows:
            
         artifacts:
           
-            - $HOME/Library/Developer/Xcode/DerivedData/**/Build/**/*.app
-            - $HOME/Library/Developer/Xcode/DerivedData/**/Build/**/*.dSYM
+            - android/app/build/outputs/**/*.apk
+           
