@@ -45,8 +45,7 @@ workflows:
             - |
                 # build Android
                 cd android
-               
-                gradlew assembleRelease
+                ./gradlew assembleRelease
     
            
         artifacts:
