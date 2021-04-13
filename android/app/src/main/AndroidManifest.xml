@@ -2,11 +2,7 @@
   package="com.appconverter">
 
     <uses-permission android:name="android.permission.INTERNET" />
-      <uses-permission android:name="android.permission.RECORD_AUDIO" />
-      <uses-permission android:name="android.permission.ACCESS_NOTIFICATIONS" />
-      <uses-permission android:name="android.permission.MANAGE_NOTIFICATIONS" />
-     <uses-permission android:name="android.permission.ACCESS_NOTIFICATION_POLICY" />
-
+      
     <application
       android:name=".MainApplication"
       android:label="@string/app_name"
