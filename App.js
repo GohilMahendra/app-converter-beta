@@ -58,7 +58,7 @@ const App=()=>
 
       <Image
       style={{resizeMode:'cover',height:height,width:width}}
-      source={require("./build_data/splash.jpg")}
+      source={require("../splash.jpg")}
       
       >
 
