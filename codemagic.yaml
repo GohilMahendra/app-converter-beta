@@ -23,7 +23,7 @@ workflows:
             # - curl $(jq -r ".logo" build_data/data.json) > ic_launcher.png
             
             - for i in $(seq 0 $(jq -r '.permissions|length-1' build_data/data.json));
-                 do sed -i "" -e $'4 a\\\n''' <uses-permission android:name="android.permission.$(jq -r ".permissions[$i]" build_data/data.json)" />' android/app/src/main/AndroidManifest.xml;
+                 do sed -i "" -e $'4 a\\\n' ' <uses-permission android:name="android.permission.$(jq -r ".permissions[$i]" build_data/data.json)" />' android/app/src/main/AndroidManifest.xml;
                  done
             - cat android/app/src/main/AndroidManifest.xml
             # - for i in $(seq 0 $(jq -r ".permissions_IOS|length-1" build_data/data.json));
