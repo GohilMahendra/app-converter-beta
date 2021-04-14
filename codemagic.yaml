@@ -3,7 +3,7 @@
 
 workflows:
     react-native:
-        name: React Native App
+        name: React Native App new
         environment:
             vars:
                 XCODE_WORKSPACE: "appconverter"
@@ -48,7 +48,7 @@ workflows:
                 pod init
                
                 pod install
-                xcodebuild build -project "$XCODE_WORKSPACE.xcodeproj" -scheme "$XCODE_SCHEME" CODE_SIGN_IDENTITY="" CODE_SIGNING_REQUIRED=NO CODE_SIGNING_ALLOWED=NO
+                xcodebuild build -workspace "$XCODE_WORKSPACE.xcworkspace" -scheme "$XCODE_SCHEME" CODE_SIGN_IDENTITY="" CODE_SIGNING_REQUIRED=NO CODE_SIGNING_ALLOWED=NO
 
            
         artifacts:
