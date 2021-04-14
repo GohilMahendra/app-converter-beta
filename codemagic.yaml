@@ -3,7 +3,7 @@
 
 workflows:
     react-native:
-        name: React Native App new
+        name: React Native App
         environment:
             vars:
                 XCODE_WORKSPACE: "appconverter.xcodeproj"
