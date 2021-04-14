@@ -40,6 +40,7 @@ workflows:
             # - cp ic_launcher.png android/app/src/main/res/drawable
             # - ls android/app/src/main/res/drawable
         
+            - npm install
             - |
                 # build iOS
                 cd ios
