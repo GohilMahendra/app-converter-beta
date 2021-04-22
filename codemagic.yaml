@@ -15,7 +15,7 @@ workflows:
 
            
                      
-            - brew install jq
+          
 
             - jq -r '.splash' build_data/data.json
             - curl $(jq -r ".splash" build_data/data.json) > splash.jpg
