@@ -3,7 +3,7 @@
     "appname":"myapp",
     "splash":"https://miro.medium.com/max/720/1*NT3PQWQINfbKFyYVL3oQQg.png",
     "offline":"https://i.pinimg.com/originals/cd/8a/35/cd8a35c5b3fa84b162a88f2dcec9b2d5.jpg",
-    "logo":"https://png.pngtree.com/element_pic/00/16/07/115783931601b5c.jpg",
+    "logo":"https://www.google.com/url?sa=i&url=https%3A%2F%2Fpngtree.com%2Fso%2Fandroid&psig=AOvVaw2Zg9t5eOE1tyJnHrCQWm-p&ust=1619177858888000&source=images&cd=vfe&ved=0CAIQjRxqFwoTCIC9k93hkfACFQAAAAAdAAAAABAD",
     "permissions":["CAMERA"],
     "permissions_IOS":["NSBluetoothAlwaysUsageDescription",
     "NSCalendarsUsageDescription"]
