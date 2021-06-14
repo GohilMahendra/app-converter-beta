@@ -2,26 +2,42 @@
 
 import React,{useRef,useState} from "react";
 
-import {View,Text, ScrollView,Dimensions,Image,BackHandler,RefreshControl,
+import {View,Text,StyleSheet,Button, ScrollView,Dimensions,Image,BackHandler,RefreshControl,
   
     ActivityIndicator
 } from "react-native";
 import WebView from "react-native-webview";
 import  data  from "../build_data/data.json";
 
-console.log(data)
+import Rate, { AndroidMarket } from 'react-native-rate';
+
 const HomeScreen=()=>
 {
 
 
 
-
   
+
+
+  const[count,setcount]=useState()
       const [refr,setrefr]=useState(false)
   const [canGoBack, setCanGoBack] = useState(false)
   const [canGoForward, setCanGoForward] = useState(false)
-  const [currentUrl, setCurrentUrl] = useState('')
+  const [currentUrl, setCurrentUrl] = useState("")
   
+
+  const rateApp=(url)=>
+  {
+    if(url.toString()=="https://heartbeat.fritz.ai/")
+    {
+
+      
+      console.log('called')
+      rate()
+      alert('here comes app rating')
+    }
+  }
+
 
   const [pos,setpos]=useState(false)
   let jsCode = `
@@ -108,9 +124,31 @@ const HomeScreen=()=>
         };
   
 
+
+    const rate=()=>
+    {
+      const options = {
+        //AppleAppID:"2193813192",
+        GooglePackageName:"com.appconverter",
+        AmazonPackageName:"com.appconverter",
+        OtherAndroidURL:"http://www.randomappstore.com/app/47172391",
+        preferredAndroidMarket: AndroidMarket.Google,
+        preferInApp:true,
+        openAppStoreIfInAppFails:true,
+        fallbackPlatformURL:"http://www.mywebsite.com/myapp.html",
+    }
+    Rate.rate(options, success=>{
+        if (success) {
+            // this technically only tells us if the user successfully went to the Review Page. Whether they actually did anything, we do not know.
+           console.log('rate_succced')
+        }
+    })
+    }
     return(   
         <View style={{flex:1}}>    
+       
 
+     
 <ScrollView 
 
 
@@ -153,6 +191,8 @@ pullToRefreshEnabled={true}
     onNavigationStateChange={navState => {
 
       console.log(navState.url)
+
+      rateApp(navState.url)
       setCanGoBack(navState.canGoBack)
       setCanGoForward(navState.canGoForward)
       setCurrentUrl(navState.url)}}
@@ -173,10 +213,19 @@ pullToRefreshEnabled={true}
 
 
      </WebView>
+
+ 
   {load &&   <ActivityIndicator style={{backgroundColor:'white',
   height:50,width:50,borderRadius:50,position:"absolute",
   top:height/2,alignSelf:'center'}}
    size='large' color="gray" animating={true} ></ActivityIndicator>}
+     { data.Trial &&  
+      
+       <Text style={{alignSelf:'flex-end',fontWeight:'bold',top:height/2,
+   alignSelf:"center",color:"gray",opacity:0.7,transform:[{rotateZ:'25deg'}],
+    fontSize:35,position:"absolute"}}>#watermark</Text>
+   
+    }
 </ScrollView>
 </View>
     )

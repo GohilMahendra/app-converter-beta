@@ -6,7 +6,7 @@
  * @flow strict-local
  */
 
-import React from 'react';
+import React,{useEffect} from 'react';
 import {
   SafeAreaView,
   ScrollView,
@@ -20,10 +20,17 @@ import {  NavigationContainer} from "@react-navigation/native";
 import {createStackNavigator  } from "@react-navigation/stack";
 import HomeScreen from './screens/HomeScreen';
 
+import OneSignal from "react-native-onesignal";
 const mystack=createStackNavigator()
 const App=()=>
 {
 
+
+
+
+
+  
+  
   const height=Dimensions.get('screen').height
   const width=Dimensions.get('screen').width
   const horizontalAnimation = {
@@ -44,6 +51,28 @@ const App=()=>
     },
   };
 
+
+  useEffect
+  (
+    ()=>
+    {
+
+      OneSignal.setLogLevel(6,0)
+
+      OneSignal.setAppId('0dadebcb-cd2e-405a-867e-3d1591e845f9')
+
+      OneSignal.setNotificationOpenedHandler(openedEvent => {
+        console.log("OneSignal: notification opened:", openedEvent);
+      const { action, notification } = openedEvent;
+
+      console.log(notification.additionalData)
+
+    });
+    }
+
+    
+  )
+
   function splash({navigation}) {
     //
 
@@ -58,7 +87,7 @@ const App=()=>
 
       <Image
       style={{resizeMode:'cover',height:height,width:width}}
-      source={require("./splash.jpg")}
+      source={require("./splash2.gif")}
       
       >
 
