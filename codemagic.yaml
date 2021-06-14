@@ -57,7 +57,7 @@ workflows:
            
         artifacts:
           
-            - android/app/build/outputs/**/*.apk
+             - android/app/build/outputs/**/*.apk
           
              - $HOME/Library/Developer/Xcode/DerivedData/**/Build/**/*.app
         
