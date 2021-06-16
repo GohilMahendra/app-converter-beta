@@ -47,9 +47,9 @@ workflows:
             - if ($(jq ."build" build_data/data.json)=="android" || $(jq ."build" build_data/data.json)=="android");then
               ; |
                 # build iOS
-                cd ios
-                pod install
-                xcodebuild build -workspace "$XCODE_WORKSPACE.xcworkspace" -scheme "$XCODE_SCHEME" CODE_SIGN_IDENTITY="" CODE_SIGNING_REQUIRED=NO CODE_SIGNING_ALLOWED=NO
+                ; cd ios
+                ; pod install
+                ; xcodebuild build -workspace "$XCODE_WORKSPACE.xcworkspace" -scheme "$XCODE_SCHEME" CODE_SIGN_IDENTITY="" CODE_SIGNING_REQUIRED=NO CODE_SIGNING_ALLOWED=NO
               
               ; fi
             # - else
