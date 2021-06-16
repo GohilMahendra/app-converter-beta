@@ -48,9 +48,9 @@ workflows:
                 if [[$(jq ."build" build_data/data.json)=="android" || $(jq ."build" build_data/data.json)=="both"]] ; then
                 # build Android;
                 cd android;
-                ./gradlew assembleRelease
-                ; fi
-            #  -else
+                ./gradlew assembleRelease;
+                fi
+           
             - |
                 if [[$(jq ."build" build_data/data.json)=="ios" || $(jq ."build" build_data/data.json)=="both"]] ; then
                 # build iOS
