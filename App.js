@@ -105,11 +105,11 @@ const App=()=>
 
     >
     <mystack.Navigator
-    initialRouteName="splash"
+   
     screenOptions={horizontalAnimation}
     >
 
-    <mystack.Screen
+    {/* <mystack.Screen
    
    name="splash"
    component={splash}
@@ -122,7 +122,7 @@ const App=()=>
     }
     >
 
-    </mystack.Screen>
+    </mystack.Screen> */}
     <mystack.Screen
    
    name="Home"

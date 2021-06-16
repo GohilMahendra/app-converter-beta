@@ -1,13 +1,21 @@
 {
-    "url":"https://www.medium.com/",
+    "url":"https://www.whatsapp.com/",
     "rate_url":"https://heartbeat.fritz.ai/",
     "appname":"myapp",
+    "package_name":"com.myapp",
+    "build_version_android":"1.0.0",
+    "build_version_ios":"1.0.0",
     "splash":"https://miro.medium.com/max/720/1*NT3PQWQINfbKFyYVL3oQQg.png",
     "offline":"https://i.pinimg.com/originals/cd/8a/35/cd8a35c5b3fa84b162a88f2dcec9b2d5.jpg",
     "logo":"https://www.google.com/url?sa=i&url=https%3A%2F%2Fpngtree.com%2Fso%2Fandroid&psig=AOvVaw2Zg9t5eOE1tyJnHrCQWm-p&ust=1619177858888000&source=images&cd=vfe&ved=0CAIQjRxqFwoTCIC9k93hkfACFQAAAAAdAAAAABAD",
     "permissions":["CAMERA"],
     "permissions_IOS":["NSBluetoothAlwaysUsageDescription",
     "NSCalendarsUsageDescription"],
-    "Trial":true
-
+    "Trial":true,
+    "onesignal_android":"API_ID",
+    "onesignal_ios":"API_ID",
+    "admob_android":"API_ID",
+    "admob_ios":"API_ID",
+    "admob_ad_unit_android":[{"banner_name":"NAME","banner_id":"UNIT_ID"}],
+    "admob_ad_unit_ios":[{"banner_name":"NAME","banner_id":"UNIT_ID"}]
 }

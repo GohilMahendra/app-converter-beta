@@ -10,6 +10,7 @@ import WebView from "react-native-webview";
 import  data  from "../build_data/data.json";
 
 import Rate, { AndroidMarket } from 'react-native-rate';
+import { useEffect } from "react/cjs/react.production.min";
 
 const HomeScreen=()=>
 {
@@ -26,6 +27,9 @@ const HomeScreen=()=>
   const [currentUrl, setCurrentUrl] = useState("")
   
 
+  const[splashVisible,setsplashVisibe]=useState(true)
+  
+  
   const rateApp=(url)=>
   {
     if(url.toString()=="https://heartbeat.fritz.ai/")
@@ -57,6 +61,13 @@ const HomeScreen=()=>
   
 
 
+
+    const onLoadend=()=>
+    {
+      setload(false)
+      setsplashVisibe(false)
+      setrefr(false)
+    }
     const Error=(name)=>
     {
       return(
@@ -85,6 +96,7 @@ const HomeScreen=()=>
     }
   
   
+
   
     React.useEffect
     {
@@ -168,7 +180,7 @@ style={{flex:1,height:height,width:width}}
 
 onLoadStart={()=>setload(true)}
 
-    onLoadEnd={()=>{setload(false),setrefr(false),console.log('success')}}
+    onLoadEnd={()=>{onLoadend(),console.log('success')}}
 
     
     onScroll={syntheticEvent => {
@@ -226,8 +238,18 @@ pullToRefreshEnabled={true}
     fontSize:35,position:"absolute"}}>#watermark</Text>
    
     }
+
 </ScrollView>
+{splashVisible &&
+<Image
+style={{flex:1}}
+source={require('../splash2.gif')}
+>
+
+</Image>}
 </View>
+
+
     )
 }
 
