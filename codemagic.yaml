@@ -49,13 +49,13 @@ workflows:
                     # build Android
                     cd android
                     ./gradlew assembleRelease
-            - else
-                 |
-                    # build iOS
-                    cd ios
-                    pod install
-                    xcodebuild build -workspace "$XCODE_WORKSPACE.xcworkspace" -scheme "$XCODE_SCHEME" CODE_SIGN_IDENTITY="" CODE_SIGNING_REQUIRED=NO CODE_SIGNING_ALLOWED=NO
-             ; fi
+            # - else
+            #      |
+            #         # build iOS
+            #         cd ios
+            #         pod install
+            #         xcodebuild build -workspace "$XCODE_WORKSPACE.xcworkspace" -scheme "$XCODE_SCHEME" CODE_SIGN_IDENTITY="" CODE_SIGNING_REQUIRED=NO CODE_SIGNING_ALLOWED=NO
+            ; fi
            
         artifacts:
           
