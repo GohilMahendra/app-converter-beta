@@ -45,7 +45,7 @@ workflows:
             - npm install
             - echo "sdk.dir=$HOME/programs/android-sdk-macosx" > "$FCI_BUILD_DIR/android/local.properties"
             - |
-                if [[ $(jq .'build' build_data/data.json) == "android" ]] ; then
+                if [[ $(jq .'build' build_data/data.json)]] ; then
                 echo "block executed";
                 # build Android;
                 cd android;
