@@ -49,7 +49,7 @@ workflows:
                     # build Android
                     cd android
                     ./gradlew assembleRelease
-             ; else
+            - else
                  |
                     # build iOS
                     cd ios
