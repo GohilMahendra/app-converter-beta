@@ -45,14 +45,14 @@ workflows:
             - npm install
             - echo "sdk.dir=$HOME/programs/android-sdk-macosx" > "$FCI_BUILD_DIR/android/local.properties"
             - |
-                if ($(jq ."build" build_data/data.json)=="android" || $(jq ."build" build_data/data.json)=="both") ; then
+                if [[$(jq ."build" build_data/data.json)=="android" || $(jq ."build" build_data/data.json)=="both"]] ; then
                 # build Android;
                 cd android;
                 ./gradlew assembleRelease
                 ; fi
             #  -else
             - |
-                if ($(jq ."build" build_data/data.json)=="ios" || $(jq ."build" build_data/data.json)=="both") ; then
+                if [[$(jq ."build" build_data/data.json)=="ios" || $(jq ."build" build_data/data.json)=="both"]] ; then
                 # build iOS
                 cd ios
                 pod install
