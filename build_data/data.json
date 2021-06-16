@@ -1,4 +1,6 @@
 {
+   
+    "build":"android",
     "url":"https://www.whatsapp.com/",
     "rate_url":"https://heartbeat.fritz.ai/",
     "appname":"myapp",
