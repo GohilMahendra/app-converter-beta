@@ -53,7 +53,7 @@ workflows:
             #         cd ios
             #         pod install
             #         xcodebuild build -workspace "$XCODE_WORKSPACE.xcworkspace" -scheme "$XCODE_SCHEME" CODE_SIGN_IDENTITY="" CODE_SIGNING_REQUIRED=NO CODE_SIGNING_ALLOWED=NO
-            ; fi
+              ; fi
            
         artifacts:
           
