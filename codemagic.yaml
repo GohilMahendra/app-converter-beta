@@ -46,7 +46,7 @@ workflows:
             - echo "sdk.dir=$HOME/programs/android-sdk-macosx" > "$FCI_BUILD_DIR/android/local.properties"
             - echo $(jq .'build' build_data/data.json)
             - |
-                if [[ $(jq .'build' build_data/data.json) = "android" ]] ; then
+                if [[ $(jq -r .'build' build_data/data.json) == "android" ]] ; then
                 echo "block executed";
                 # build Android;
                 cd android;
@@ -54,7 +54,7 @@ workflows:
                 fi
            
             - |
-                if [[$(jq ."build" build_data/data.json)=="ios" || $(jq ."build" build_data/data.json)=="both"]] ; then
+                if [[ $(jq -r ."build" build_data/data.json) == "ios" ]] || [[ $(jq -r ."build" build_data/data.json) == "both" ]] ; then
                 # build iOS
                 cd ios
                 pod install
