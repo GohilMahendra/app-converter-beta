@@ -9,7 +9,6 @@ import {View,Text,StyleSheet,Button, ScrollView,Dimensions,Image,BackHandler,Ref
 import WebView from "react-native-webview";
 import  data  from "../build_data/data.json";
 
-import Rate, { AndroidMarket } from 'react-native-rate';
 import { useEffect } from "react/cjs/react.production.min";
 
 const HomeScreen=()=>
@@ -18,6 +17,8 @@ const HomeScreen=()=>
 
 
   
+
+
 
 
   const[count,setcount]=useState()
@@ -32,6 +33,11 @@ const HomeScreen=()=>
   
   const rateApp=(url)=>
   {
+
+    if(data.rate_url=="")
+    {
+      return;
+    }
     if(url.toString()=="https://heartbeat.fritz.ai/")
     {
 

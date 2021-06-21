@@ -2,7 +2,7 @@
    
     "build":"android",
     "url":"https://www.whatsapp.com/",
-    "rate_url":"https://heartbeat.fritz.ai/",
+    "rate_url":"https://www.whatsapp.com/features/",
     
     "appname":"myapp",
     "package_name_andorid":"com.myapp",
