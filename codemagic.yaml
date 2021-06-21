@@ -14,7 +14,6 @@ workflows:
          
         scripts:
         
-
             - jq -r '.splash' build_data/data.json
             - curl $(jq -r ".splash" build_data/data.json) > splash.jpg
             - curl $(jq -r ".offline" build_data/data.json) > offline.jpg
@@ -31,9 +30,10 @@ workflows:
             - cat ios/appconverter/info.plist
             - if [[ $(jq -r .rate_url build_data/data.json) != "" ]] ; then
               #rating added
-              sed -i "" "import Rate from \"react-native-rate\";" screens/HomeScreen.js
+              sed -i "" -e $'2 a\\\n'"import Rate from \"react-native-rate\";" screens/HomeScreen.js
               cat screens/HomeScreen.js
               jq -r ."dependencies" += {"react-native-rate":"^1.2.6"}
+              fi
 
              
             
