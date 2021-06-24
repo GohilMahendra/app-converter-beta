@@ -21,14 +21,17 @@ import {createStackNavigator  } from "@react-navigation/stack";
 import HomeScreen from './screens/HomeScreen';
 
 import OneSignal from "react-native-onesignal";
+import { useState } from 'react/cjs/react.development';
 const mystack=createStackNavigator()
-const App=()=>
+const App=({navigation})=>
 {
 
 
 
 
 
+
+  const [link,setlink]=useState("")
   
   
   const height=Dimensions.get('screen').height
@@ -65,8 +68,14 @@ const App=()=>
         console.log("OneSignal: notification opened:", openedEvent);
       const { action, notification } = openedEvent;
 
-      console.log(notification.additionalData)
 
+     
+      // console.log(notification.additionalData.link)
+
+
+      setlink(notification.additionalData.link)
+      
+      
     });
     }
 
@@ -126,6 +135,9 @@ const App=()=>
     <mystack.Screen
    
    name="Home"
+   
+   initialParams={{link:link}}
+   
    component={HomeScreen}
     options=
     {

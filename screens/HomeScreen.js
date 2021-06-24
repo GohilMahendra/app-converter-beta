@@ -1,6 +1,4 @@
-
-
-import React,{useRef,useState} from "react";
+import React,{useRef,useState,useEffect} from "react";
 
 import {View,Text,StyleSheet,Button, ScrollView,Dimensions,Image,BackHandler,RefreshControl,
   
@@ -9,28 +7,37 @@ import {View,Text,StyleSheet,Button, ScrollView,Dimensions,Image,BackHandler,Ref
 import WebView from "react-native-webview";
 import  data  from "../build_data/data.json";
 
-import { useEffect } from "react/cjs/react.production.min";
+import { useRoute } from "@react-navigation/native";
 
-const HomeScreen=()=>
+const HomeScreen=({props})=>
 {
 
-
+ 
 
   
+  const x=useRoute()
+  
+
+ 
+  // if(x!=null && x!=undefined)
+
+  // {
+  //   setnotfUrl(x.params.link)
+
+  // }
 
 
-
-
-  const[count,setcount]=useState()
+ 
+   const[link,setlink]=useState("")
       const [refr,setrefr]=useState(false)
   const [canGoBack, setCanGoBack] = useState(false)
   const [canGoForward, setCanGoForward] = useState(false)
   const [currentUrl, setCurrentUrl] = useState("")
   
 
-  const[splashVisible,setsplashVisibe]=useState(true)
+  const[splashVisible,setsplashVisibe]=useState(false)
   
-  
+
   const rateApp=(url)=>
   {
 
@@ -103,7 +110,27 @@ const HomeScreen=()=>
   
   
 
+ 
+    useEffect
+    (
+      ()=>
+      {
+       
   
+   
+   var p=""
+    if(x.params?.link !=undefined)
+    {
+  
+     p=x.params.link
+  
+    }
+   console.log(p)
+    setlink(p)
+  
+      }
+      ,[]
+    )
     React.useEffect
     {
       
@@ -174,19 +201,19 @@ refreshControl={ <RefreshControl refreshing={refr}
 enabled={pos}
 onRefresh={refc}
 ></RefreshControl>}
-style={{height:height,width:width,position:'absolute'}}>
+style={{flex:1,backgroundColor:'blue',position:'absolute'}}>
 
   
              <WebView
 
-source={{uri:data.url}}
+source={(link!="")?{link}:{uri:data.url}}
 ref={webviewRef}
-style={{flex:1,height:height,width:width}}
+style={{flex:1,backgroundColor:'blue'}}
 
 
 onLoadStart={()=>setload(true)}
 
-    onLoadEnd={()=>{onLoadend(),console.log('success')}}
+    onLoadend={()=>{onLoadend(),console.log('success')}}
 
     
     onScroll={syntheticEvent => {
@@ -195,13 +222,13 @@ onLoadStart={()=>setload(true)}
     }}
 
 
-pullToRefreshEnabled={true}
+   pullToRefreshEnabled={true}
    allowFileAccessFromFileURLs={true}
-  allowingReadAccessToURL={true}
+   allowingReadAccessToURL={true}
    allowsBackForwardNavigationGestures={true}
-    allowsInlineMediaPlayback={true}
+   allowsInlineMediaPlayback={true}
    allowUniversalAccessFromFileURLs={false}
-     userAgent="Mozilla/5.0 (Windows NT 6.1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/67.0.3396.99 Safari/537.36"
+  userAgent="Mozilla/5.0 (Windows NT 6.1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/67.0.3396.99 Safari/537.36"
 
      
      scalesPageToFit={true}
