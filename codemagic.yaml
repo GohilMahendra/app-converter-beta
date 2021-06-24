@@ -47,7 +47,7 @@ workflows:
             - ls android/app/src/main/res/drawable
         
             - npm install
-            - react-native link
+            
             - echo "sdk.dir=$HOME/programs/android-sdk-macosx" > "$FCI_BUILD_DIR/android/local.properties"
             - echo $(jq .'build' build_data/data.json)
             - |
