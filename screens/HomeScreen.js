@@ -67,8 +67,8 @@ const HomeScreen=({props})=>
             document.cookie = 'password='+document.querySelector('#password').value;
         };
     `;
-  const height=Dimensions.get('window').height
-  const width=Dimensions.get('window').width
+  const height=Dimensions.get('screen').height
+  const width=Dimensions.get('screen').width
     const [load,setload]=React.useState(false)
     const webviewRef = useRef()
   
@@ -77,6 +77,7 @@ const HomeScreen=({props})=>
 
     const onLoadend=()=>
     {
+      console.log("called")
       setload(false)
       setsplashVisibe(false)
       setrefr(false)
@@ -111,26 +112,26 @@ const HomeScreen=({props})=>
   
 
  
-    useEffect
-    (
-      ()=>
-      {
+  //   useEffect
+  //   (
+  //     ()=>
+  //     {
        
   
    
-   var p=""
-    if(x.params?.link !=undefined)
-    {
+  //  var p=""
+  //   if(x.params?.link !=undefined)
+  //   {
   
-     p=x.params.link
+  //    p=x.params.link
   
-    }
-   console.log(p)
-    setlink(p)
+  //   }
+  //  console.log(p)
+  //   setlink(p)
   
-      }
-      ,[]
-    )
+  //     }
+  //     ,[]
+  //   )
     React.useEffect
     {
       
@@ -201,14 +202,14 @@ refreshControl={ <RefreshControl refreshing={refr}
 enabled={pos}
 onRefresh={refc}
 ></RefreshControl>}
-style={{flex:1,backgroundColor:'blue',position:'absolute'}}>
+style={{flex:1,height:"100%",width:width,position:"absolute"}}>
 
   
              <WebView
 
-source={(link!="")?{link}:{uri:data.url}}
+source={{uri:data.url}}
 ref={webviewRef}
-style={{flex:1,backgroundColor:'blue'}}
+style={{flex:1}}
 
 
 onLoadStart={()=>setload(true)}
@@ -231,13 +232,16 @@ onLoadStart={()=>setload(true)}
   userAgent="Mozilla/5.0 (Windows NT 6.1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/67.0.3396.99 Safari/537.36"
 
      
+  domStorageEnabled={true}
      scalesPageToFit={true}
-    
+    startInLoadingState={true}
     onNavigationStateChange={navState => {
 
+
+      
       console.log(navState.url)
 
-      rateApp(navState.url)
+     // rateApp(navState.url)
       setCanGoBack(navState.canGoBack)
       setCanGoForward(navState.canGoForward)
       setCurrentUrl(navState.url)}}
