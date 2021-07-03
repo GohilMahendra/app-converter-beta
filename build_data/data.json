@@ -1,8 +1,8 @@
 {
    
-    "build":"android",
+    "build":"ios",
     "url":"https://www.medium.com/",
-    "rate_url":"https://www.whatsapp.com/features/",
+    "rate_url":"",
     
     "appname":"myapp",
     "package_name_andorid":"com.myapp",
