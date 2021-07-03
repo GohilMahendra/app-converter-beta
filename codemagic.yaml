@@ -66,13 +66,14 @@ workflows:
                 # build iOS
                 cd ios
                 pod install
-                xcodebuild build -workspace "$XCODE_WORKSPACE.xcworkspace" -scheme "$XCODE_SCHEME" CODE_SIGN_IDENTITY="" CODE_SIGNING_REQUIRED=NO CODE_SIGNING_ALLOWED=NO
+               xcode-project build-ipa --workspace "$XCODE_WORKSPACE.xcworkspace" -scheme "$XCODE_SCHEME" CODE_SIGN_IDENTITY="" CODE_SIGNING_REQUIRED=NO CODE_SIGNING_ALLOWED=NO
                 fi 
            
         artifacts:
           
              - android/app/build/outputs/**/*.apk
           
+
              - $HOME/Library/Developer/Xcode/DerivedData/**/Build/**/*.app
         
            
