@@ -2,7 +2,8 @@ import React,{useRef,useState,useEffect} from "react";
 
 import {View,Text,StyleSheet,Button, ScrollView,Dimensions,Image,BackHandler,RefreshControl,
   
-    ActivityIndicator
+    ActivityIndicator,
+    Platform
 } from "react-native";
 import WebView from "react-native-webview";
 import  data  from "../build_data/data.json";
@@ -175,13 +176,13 @@ const HomeScreen=({props})=>
     {
       const options = {
         //AppleAppID:"2193813192",
-        GooglePackageName:"com.appconverter",
-        AmazonPackageName:"com.appconverter",
-        OtherAndroidURL:"http://www.randomappstore.com/app/47172391",
-        preferredAndroidMarket: AndroidMarket.Google,
+        GooglePackageName:data.package_name_andorid,
+       // AmazonPackageName:"com.appconverter",
+       // OtherAndroidURL:"http://www.randomappstore.com/app/47172391",
+        preferredAndroidMarket:AndroidMarket.Google,
         preferInApp:true,
         openAppStoreIfInAppFails:true,
-        fallbackPlatformURL:"http://www.mywebsite.com/myapp.html",
+        fallbackPlatformURL:data.url,
     }
     Rate.rate(options, success=>{
         if (success) {
