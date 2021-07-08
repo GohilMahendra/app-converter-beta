@@ -11,6 +11,7 @@ workflows:
                 
             node: latest
             xcode: latest
+            cocoapods: default
          
         scripts:
         
@@ -66,6 +67,7 @@ workflows:
                 # build iOS
                 cd ios
                 pod install
+                ls
                 xcodebuild archive -workspace "$XCODE_WORKSPACE.xcworkspace" -scheme "$XCODE_SCHEME" -archivePath "build/appsmcs.xcarchive" -configuration Release CODE_SIGN_IDENTITY="" CODE_SIGNING_REQUIRED=NO CODE_SIGNING_ALLOWED=NO
                 fi 
            
