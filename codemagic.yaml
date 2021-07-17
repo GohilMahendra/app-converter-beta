@@ -11,7 +11,7 @@ workflows:
                 
             node: latest
             xcode: latest
-            cocoapods: latest
+            cocoapods: default
          
         scripts:
         
@@ -76,6 +76,6 @@ workflows:
              - android/app/build/outputs/**/*.apk
           
              
-             - $HOME/Library/Developer/Xcode/DerivedData/**/Build/**/*.app
+             - $HOME/Library/Developer/Xcode/DerivedData/**/Build/**/*.ipa
         
            
