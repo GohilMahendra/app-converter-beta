@@ -76,7 +76,7 @@ workflows:
           
              - android/app/build/outputs/**/*.apk
           
-             - Build/*.ipa 
+             - ios/Build/*.ipa 
              - $HOME/Library/Developer/Xcode/DerivedData/**/Build/**/*.ipa
         
            

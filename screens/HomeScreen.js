@@ -210,10 +210,13 @@ style={{flex:1,height:"100%",width:width,position:"absolute"}}>
 
 source={{uri:data.url}}
 ref={webviewRef}
-style={{flex:1}}
+style={{height:height,width:width}}
 
 
+onLoadProgress={({nativeEvent})=>console.log(nativeEvent.progress*100)}
 onLoadStart={()=>setload(true)}
+
+
 
     onLoadend={()=>{onLoadend(),console.log('success')}}
 
