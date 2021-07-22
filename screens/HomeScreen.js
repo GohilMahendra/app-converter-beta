@@ -109,7 +109,7 @@ const HomeScreen=({props})=>
       
       
 
-      console.log("called")
+      console.log("Load end Methid __called")
       setload(false)
       
       setrefr(false)
