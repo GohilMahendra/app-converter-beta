@@ -8,16 +8,22 @@ import {View,Text,StyleSheet,Button, ScrollView,Dimensions,Image,BackHandler,Ref
 import WebView from "react-native-webview";
 import  data  from "../build_data/data.json";
 
-import { useRoute } from "@react-navigation/native";
+import  Netinfo  from "@react-native-community/netinfo";
+import { useNavigation, useRoute } from "@react-navigation/native";
 
 const HomeScreen=({props})=>
 {
 
- 
+
+  const navigation=useNavigation()
+  
+  console.log(props)
 
   
   const x=useRoute()
   
+
+  console.log(JSON.stringify(x.params.link)+'parmas link')
 
  
   // if(x!=null && x!=undefined)
@@ -29,15 +35,22 @@ const HomeScreen=({props})=>
 
 
  
-   const[link,setlink]=useState("")
+  
+
+  const [offline,setoffline]=useState(false)
       const [refr,setrefr]=useState(false)
   const [canGoBack, setCanGoBack] = useState(false)
   const [canGoForward, setCanGoForward] = useState(false)
   const [currentUrl, setCurrentUrl] = useState("")
+
+  
+  const [firstLoad,setfirstLoad]=useState(true)
+
+  const[splashVisible,setsplashVisibe]=useState(true)
   
 
-  const[splashVisible,setsplashVisibe]=useState(false)
-  
+
+
 
   const rateApp=(url)=>
   {
@@ -76,11 +89,29 @@ const HomeScreen=({props})=>
 
 
 
+
+
+
     const onLoadend=()=>
     {
+
+      if(firstLoad)
+      {
+
+        console.log("FirstLOAD method Called")
+        setTimeout(() => {
+          
+          setsplashVisibe(false),
+          setfirstLoad(false)
+          console.log("ended first load")
+        }, 3000);
+      }
+      
+      
+
       console.log("called")
       setload(false)
-      setsplashVisibe(false)
+      
       setrefr(false)
     }
     const Error=(name)=>
@@ -139,7 +170,23 @@ const HomeScreen=({props})=>
       BackHandler.addEventListener('hardwareBackPress',handleBackButton)
       ,[]
     }
-   
+
+    
+    React.useEffect
+    (
+      ()=>
+      {
+        const unsubscribe=Netinfo.addEventListener((state)=>
+        {
+          const OFFLINE=!(state.isConnected && state.isInternetReachable)
+          setoffline(OFFLINE)
+        }
+        )
+
+        return ()=>unsubscribe()
+      },
+      []
+    )
 
 
   React.useEffect(
@@ -196,6 +243,9 @@ const HomeScreen=({props})=>
        
 
      
+
+
+{(!offline) &&
 <ScrollView 
 
 
@@ -203,14 +253,14 @@ refreshControl={ <RefreshControl refreshing={refr}
 enabled={pos}
 onRefresh={refc}
 ></RefreshControl>}
-style={{flex:1,height:"100%",width:width,position:"absolute"}}>
+style={{height:height,width:width,backgroundColor:'blue',position:'absolute'}}>
 
   
              <WebView
 
-source={{uri:data.url}}
+source={{uri:(x.params.link!="")?x.params.link:data.url}}
 ref={webviewRef}
-style={{height:height,width:width}}
+style={{height:height,width:width,backgroundColor:"pink"}}
 
 
 onLoadProgress={({nativeEvent})=>console.log(nativeEvent.progress*100)}
@@ -218,7 +268,7 @@ onLoadStart={()=>setload(true)}
 
 
 
-    onLoadend={()=>{onLoadend(),console.log('success')}}
+    onLoadEnd={()=>{onLoadend(),console.log('success')}}
 
     
     onScroll={syntheticEvent => {
@@ -227,11 +277,15 @@ onLoadStart={()=>setload(true)}
     }}
 
 
+    
+
+    onError={()=>console.log("internet error found!!")}
    pullToRefreshEnabled={true}
    allowFileAccessFromFileURLs={true}
    allowingReadAccessToURL={true}
    allowsBackForwardNavigationGestures={true}
    allowsInlineMediaPlayback={true}
+   onFileDownload
    allowUniversalAccessFromFileURLs={false}
   userAgent="Mozilla/5.0 (Windows NT 6.1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/67.0.3396.99 Safari/537.36"
 
@@ -254,6 +308,9 @@ onLoadStart={()=>setload(true)}
     
 
      
+
+     setSupportMultipleWindows={true}
+     javaScriptCanOpenWindowsAutomatically={true}
      
      allowsFullscreenVideo={true}
 
@@ -268,10 +325,16 @@ onLoadStart={()=>setload(true)}
      </WebView>
 
  
-  {load &&   <ActivityIndicator style={{backgroundColor:'white',
+  {load &&  
+   <ActivityIndicator style={{backgroundColor:'white',
   height:50,width:50,borderRadius:50,position:"absolute",
   top:height/2,alignSelf:'center'}}
-   size='large' color="gray" animating={true} ></ActivityIndicator>}
+   size='large' color="gray" animating={true} >
+     
+     
+     </ActivityIndicator>}
+    
+    
      { data.Trial &&  
       
        <Text style={{alignSelf:'flex-end',fontWeight:'bold',top:height/2,
@@ -280,11 +343,18 @@ onLoadStart={()=>setload(true)}
    
     }
 
-</ScrollView>
-{splashVisible &&
+</ScrollView>}
+{(splashVisible ) &&
 <Image
-style={{flex:1}}
-source={require('../splash2.gif')}
+style={{height:height,width:width}}
+source={require('../splash.jpg')}
+>
+
+</Image>}
+{( offline) &&
+<Image
+style={{height:height,width:width}}
+source={require('../offline.jpg')}
 >
 
 </Image>}

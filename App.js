@@ -16,14 +16,14 @@ import {
   View,
 } from 'react-native';
 
-import {  NavigationContainer} from "@react-navigation/native";
+import {  NavigationContainer, NavigationHelpersContext, useNavigation} from "@react-navigation/native";
 import {createStackNavigator  } from "@react-navigation/stack";
 import HomeScreen from './screens/HomeScreen';
 
 import OneSignal from "react-native-onesignal";
 import { useState } from 'react/cjs/react.development';
 const mystack=createStackNavigator()
-const App=({navigation})=>
+const App=()=>
 {
 
 
@@ -33,6 +33,8 @@ const App=({navigation})=>
 
   const [link,setlink]=useState("")
   
+
+  //const navigation=useNavigation()
   
   const height=Dimensions.get('screen').height
   const width=Dimensions.get('screen').width
@@ -65,7 +67,7 @@ const App=({navigation})=>
       OneSignal.setAppId('0dadebcb-cd2e-405a-867e-3d1591e845f9')
 
       OneSignal.setNotificationOpenedHandler(openedEvent => {
-        console.log("OneSignal: notification opened:", openedEvent);
+        //console.log("OneSignal: notification opened:", openedEvent);
       const { action, notification } = openedEvent;
 
 
@@ -73,6 +75,10 @@ const App=({navigation})=>
       // console.log(notification.additionalData.link)
 
 
+      console.log(notification.additionalData.link)
+
+
+  //    navigation.navigate("Home",{link:notification.additionalData.link})
       setlink(notification.additionalData.link)
       
       
