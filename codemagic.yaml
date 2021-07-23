@@ -38,10 +38,10 @@ workflows:
 
              
             
-            - sed -i "" "s/<string>1.0</string>/<string>\"$(jq -r '.build_version_android' build_data/data.json)\"</string>/g" ios/appconverter/info.plist
-            - cat ios/appconverter/info.plist
-            - sed -i "" "s/versionName \"1.0\"/versionName \"$(jq -r '.build_version_android' build_data/data.json)\"/g" android/app/build.gradle
-            - cat android/app/build.gradle
+            # - sed -i "" "s/<string>1.0</string>/<string>\"$(jq -r '.build_version_android' build_data/data.json)\"</string>/g" ios/appconverter/info.plist
+            # - cat ios/appconverter/info.plist
+            # - sed -i "" "s/versionName \"1.0\"/versionName \"$(jq -r '.build_version_android' build_data/data.json)\"/g" android/app/build.gradle
+            # - cat android/app/build.gradle
             - sed -i "" "s/appconverter/$(jq -r '.appname' build_data/data.json)/g" android/app/src/main/res/values/strings.xml
             - sed -i "" "s/appconverter/$(jq -r '.appname' build_data/data.json)/g" android/app/src/main/res/values/strings.xml
             - cat android/app/src/main/res/values/strings.xml
