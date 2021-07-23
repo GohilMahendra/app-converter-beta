@@ -103,13 +103,13 @@ const HomeScreen=({props})=>
           
           setsplashVisibe(false),
           setfirstLoad(false)
-          console.log("ended first load")
+          console.log("ended first load || SPLAASH SCREEN ENDED")
         }, 3000);
       }
       
       
 
-      console.log("called")
+      console.log("Load end Methid __called")
       setload(false)
       
       setrefr(false)
@@ -258,7 +258,7 @@ style={{height:height,width:width,backgroundColor:'blue',position:'absolute'}}>
   
              <WebView
 
-source={{uri:(x.params.link!="")?x.params.link:data.url}}
+source={{uri:data.url}}
 ref={webviewRef}
 style={{height:height,width:width,backgroundColor:"pink"}}
 
