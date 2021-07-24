@@ -20,7 +20,7 @@ import {  NavigationContainer, NavigationHelpersContext, useNavigation} from "@r
 import {createStackNavigator  } from "@react-navigation/stack";
 import HomeScreen from './screens/HomeScreen';
 
-import OneSignal from "react-native-onesignal";
+// import OneSignal from "react-native-onesignal";
 
 const mystack=createStackNavigator()
 const App=()=>
@@ -57,27 +57,27 @@ const App=()=>
     ()=>
     {
 
-      OneSignal.setLogLevel(6,0)
+  //     OneSignal.setLogLevel(6,0)
 
-      OneSignal.setAppId('0dadebcb-cd2e-405a-867e-3d1591e845f9')
+  //     OneSignal.setAppId('0dadebcb-cd2e-405a-867e-3d1591e845f9')
 
-      OneSignal.setNotificationOpenedHandler(openedEvent => {
-        //console.log("OneSignal: notification opened:", openedEvent);
-      const { action, notification } = openedEvent;
+  //     OneSignal.setNotificationOpenedHandler(openedEvent => {
+  //       //console.log("OneSignal: notification opened:", openedEvent);
+  //     const { action, notification } = openedEvent;
 
 
      
-      // console.log(notification.additionalData.link)
+  //     // console.log(notification.additionalData.link)
 
 
-      console.log(notification.additionalData.link)
+  //     console.log(notification.additionalData.link)
 
 
-  //    navigation.navigate("Home",{link:notification.additionalData.link})
-      setlink(notification.additionalData.link)
+  // //    navigation.navigate("Home",{link:notification.additionalData.link})
+  //     setlink(notification.additionalData.link)
       
       
-    });
+   // });
     }
 
     
