@@ -15,6 +15,8 @@ workflows:
          
         scripts:
         
+
+              - chmod +x gradlew
           
             # - curl $(jq -r ".splash" build_data/data.json) > splash.jpg
             # - curl $(jq -r ".offline" build_data/data.json) > offline.jpg
