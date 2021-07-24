@@ -11,32 +11,50 @@ import  data  from "../build_data/data.json";
 import  Netinfo  from "@react-native-community/netinfo";
 import { useNavigation, useRoute } from "@react-navigation/native";
 
-const HomeScreen=({props})=>
+
+import { 
+  AdMobBanner, AdMobInterstitial, setTestDeviceIDAsync
+ 
+ } from "expo-ads-admob";
+import { event } from "react-native-reanimated";
+
+import Rate,{AndroidMarket} from "react-native-rate";
+
+const HomeScreen=()=>
 {
 
 
   const navigation=useNavigation()
   
-  console.log(props)
 
-  
-  const x=useRoute()
-  
+  const route=useRoute()
+  const link=route.params?.link
+  console.log(link+"PROPS")
 
-  console.log(JSON.stringify(x.params.link)+'parmas link')
+  React.useEffect
+  (
+    ()=>
+    {
 
- 
-  // if(x!=null && x!=undefined)
+      interstitial()
 
-  // {
-  //   setnotfUrl(x.params.link)
-
-  // }
+    },[]
+  )
 
 
- 
-  
+  React.useEffect
+  (
 
+    ()=>
+    {
+
+      console.log("called changing useeffect")
+      if(link!="")
+      setCurrentUrl(link)
+
+    }
+    ,[link]
+  )
   const [offline,setoffline]=useState(false)
       const [refr,setrefr]=useState(false)
   const [canGoBack, setCanGoBack] = useState(false)
@@ -59,13 +77,11 @@ const HomeScreen=({props})=>
     {
       return;
     }
-    if(url.toString()=="https://heartbeat.fritz.ai/")
+    if(url.toString()==data.rate_url)
     {
-
-      
-      console.log('called')
+      console.log('called Rate method>>')
       rate()
-      alert('here comes app rating')
+     
     }
   }
 
@@ -88,25 +104,56 @@ const HomeScreen=({props})=>
   
 
 
+    const interstitial=async()=>
+    {
+ 
+
+      
+    //  await setTestDeviceIDAsync('EMULATOR')
+ 
+      await AdMobInterstitial.setAdUnitID('ca-app-pub-3940256099942544/1033173712'); // Test ID, Replace with your-admob-unit-id
+
+      try
+      {
+      await AdMobInterstitial.requestAdAsync();
+await AdMobInterstitial.showAdAsync();
+      }
+      catch(err)
+      {
+        console.log(err)
+      }
+    }
 
 
 
+
+
+
+    React.useEffect
+    (
+      ()=>
+      {
+
+        if(firstLoad)
+        {
+  
+          console.log("FirstLOAD method Called")
+          setTimeout(() => {
+            
+            setsplashVisibe(false),
+            setfirstLoad(false)
+            console.log("ended first load || SPLAASH SCREEN ENDED")
+          }, 3000);
+        }
+        
+      },
+      []
+    )
 
     const onLoadend=()=>
     {
 
-      if(firstLoad)
-      {
-
-        console.log("FirstLOAD method Called")
-        setTimeout(() => {
-          
-          setsplashVisibe(false),
-          setfirstLoad(false)
-          console.log("ended first load || SPLAASH SCREEN ENDED")
-        }, 3000);
-      }
-      
+    
       
 
       console.log("Load end Methid __called")
@@ -143,27 +190,6 @@ const HomeScreen=({props})=>
   
   
 
- 
-  //   useEffect
-  //   (
-  //     ()=>
-  //     {
-       
-  
-   
-  //  var p=""
-  //   if(x.params?.link !=undefined)
-  //   {
-  
-  //    p=x.params.link
-  
-  //   }
-  //  console.log(p)
-  //   setlink(p)
-  
-  //     }
-  //     ,[]
-  //   )
     React.useEffect
     {
       
@@ -189,36 +215,6 @@ const HomeScreen=({props})=>
     )
 
 
-  React.useEffect(
-          ()=>{internetPermission},
-      )
-      const internetPermission = async () => {
-          try {
-            const granted = await PermissionsAndroid.request(
-              PermissionsAndroid.PERMISSIONS.WRITE_EXTERNAL_STORAGE,
-              {
-                title: "Cool Photo App Camera Permission",
-                message:
-                  "Cool Photo App needs access to your camera " +
-                  "so you can take awesome pictures.",
-                buttonNeutral: "Ask Me Later",
-                buttonNegative: "Cancel",
-                buttonPositive: "OK"
-              }
-            );
-            if (granted === PermissionsAndroid.RESULTS.GRANTED) {
-              console.log("You can use the camera");
-            } else {
-              internetPermission
-              console.log("Camera permission denied");
-            }
-          } catch (err) {
-            console.warn(err);
-          }
-        };
-  
-
-
     const rate=()=>
     {
       const options = {
@@ -228,7 +224,9 @@ const HomeScreen=({props})=>
        // OtherAndroidURL:"http://www.randomappstore.com/app/47172391",
         preferredAndroidMarket:AndroidMarket.Google,
         preferInApp:true,
-        openAppStoreIfInAppFails:true,
+      
+
+       openAppStoreIfInAppFails:false,
         fallbackPlatformURL:data.url,
     }
     Rate.rate(options, success=>{
@@ -245,7 +243,12 @@ const HomeScreen=({props})=>
      
 
 
-{(!offline) &&
+       <AdMobBanner
+  bannerSize="fullBanner"
+  adUnitID="ca-app-pub-3940256099942544/6300978111" // Test ID, Replace with your-admob-unit-id
+  servePersonalizedAds // true or false
+  onDidFailToReceiveAdWithError={this.bannerError} />
+{(!offline)  &&
 <ScrollView 
 
 
@@ -258,7 +261,7 @@ style={{height:height,width:width,backgroundColor:'blue',position:'absolute'}}>
   
              <WebView
 
-source={{uri:data.url}}
+source={{uri:(route.params?.link!="" && route.params?.link !=undefined)?link:data.url}}
 ref={webviewRef}
 style={{height:height,width:width,backgroundColor:"pink"}}
 
@@ -285,30 +288,26 @@ onLoadStart={()=>setload(true)}
    allowingReadAccessToURL={true}
    allowsBackForwardNavigationGestures={true}
    allowsInlineMediaPlayback={true}
-   onFileDownload
-   allowUniversalAccessFromFileURLs={false}
+   
+   allowUniversalAccessFromFileURLs={true}
   userAgent="Mozilla/5.0 (Windows NT 6.1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/67.0.3396.99 Safari/537.36"
 
      
-  domStorageEnabled={true}
+     domStorageEnabled={true}
      scalesPageToFit={true}
-    startInLoadingState={true}
-    onNavigationStateChange={navState => {
+     startInLoadingState={true}
+     onNavigationStateChange={navState => {
 
 
       
       console.log(navState.url)
 
-     // rateApp(navState.url)
+      rateApp(navState.url)
       setCanGoBack(navState.canGoBack)
       setCanGoForward(navState.canGoForward)
-      setCurrentUrl(navState.url)}}
+      setCurrentUrl(navState.url)}
     
-     // injectedJavaScript={jsCode}
-    
-
-     
-
+    }
      setSupportMultipleWindows={true}
      javaScriptCanOpenWindowsAutomatically={true}
      

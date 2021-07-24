@@ -1,12 +1,12 @@
 {
    
-    "build":"ios",
+    "build":"android",
     "url":"https://www.safeaudiokit.com/",
-    "rate_url":"",
+    "rate_url":"https://safeaudiokit.com/audio-cutter",
     
-    "appname":"myapp",
-    "package_name_andorid":"com.myapp",
-    "packge_name_ios":"com.myapp",
+    "appname":"SafeAudioKit",
+    "package_name_andorid":"com.safeaudiokit",
+    "packge_name_ios":"com.safeaudiokit",
     "app_apple_id":2193813192,
 
     "build_version_android":"1.0.0",
@@ -19,7 +19,7 @@
     "permissions":["CAMERA"],
     "permissions_IOS":["NSBluetoothAlwaysUsageDescription",
     "NSCalendarsUsageDescription"],
-    "Trial":true,
+    "Trial":false,
     
     "onesignal_android":"API_ID",
     "onesignal_ios":"API_ID",

@@ -6,7 +6,7 @@
  * @flow strict-local
  */
 
-import React,{useEffect} from 'react';
+import React,{useEffect,useState} from 'react';
 import {
   SafeAreaView,
   ScrollView,
@@ -21,15 +21,10 @@ import {createStackNavigator  } from "@react-navigation/stack";
 import HomeScreen from './screens/HomeScreen';
 
 import OneSignal from "react-native-onesignal";
-import { useState } from 'react/cjs/react.development';
+
 const mystack=createStackNavigator()
 const App=()=>
 {
-
-
-
-
-
 
   const [link,setlink]=useState("")
   
@@ -88,30 +83,30 @@ const App=()=>
     
   )
 
-  function splash({navigation}) {
-    //
+//   function splash({navigation}) {
+//     //
 
    
- //   const test=require()   
- setTimeout(()=>{navigation.replace("Home")},3000)
-     return(
+//  //   const test=require()   
+//  setTimeout(()=>{navigation.replace("Home")},3000)
+//      return(
 
      
-       <View style={{flex:1,justifyContent:'center',
-       alignItems:'center'}}>
+//        <View style={{flex:1,justifyContent:'center',
+//        alignItems:'center'}}>
 
-      <Image
-      style={{resizeMode:'cover',height:height,width:width}}
-      source={require("./splash2.gif")}
+//       <Image
+//       style={{resizeMode:'cover',height:height,width:width}}
+//       source={require("./splash2.gif")}
       
-      >
+//       >
 
-      </Image>
+//       </Image>
       
-             </View>
-     )
+//              </View>
+//      )
      
-   }
+//    }
 
   return(
 
@@ -142,12 +137,19 @@ const App=()=>
    
    name="Home"
    
-   initialParams={{link:link}}
+
+  
+  initialParams={{link:link}}
    
+
+
+
    component={HomeScreen}
+   
     options=
     {
       {
+        
         headerShown:false
 
       }
