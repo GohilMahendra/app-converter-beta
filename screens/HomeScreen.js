@@ -31,6 +31,12 @@ const HomeScreen=()=>
   const link=route.params?.link
   console.log(link+"PROPS")
 
+
+
+  if(link!="")
+  {
+    setCurrentUrl(link)
+  }
   React.useEffect
   (
     ()=>
@@ -48,9 +54,13 @@ const HomeScreen=()=>
     ()=>
     {
 
+
+      console.log(link+"link passed through NOTIFICATIONS")
       console.log("called changing useeffect")
       if(link!="")
       setCurrentUrl(link)
+      console.log(currentUrl+"currunt URL")
+      webviewRef.current.reload()
 
     }
     ,[link]
