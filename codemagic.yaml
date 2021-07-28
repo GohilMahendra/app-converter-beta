@@ -47,7 +47,7 @@ workflows:
 
              
             
-            - sed -i "" "s/>1.0</>\$(jq -r '.build_version_android' build_data/data.json)\</g" ios/appconverter/info.plist
+            - sed -i "" "s/>1.0</>$(jq -r '.build_version_android' build_data/data.json)</g" ios/appconverter/info.plist
             - cat ios/appconverter/info.plist
             - sed -i "" "s/versionName \"1.0\"/versionName \"$(jq -r '.build_version_android' build_data/data.json)\"/g" android/app/build.gradle
             - cat android/app/build.gradle
