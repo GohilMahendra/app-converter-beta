@@ -50,7 +50,7 @@ workflows:
             - sed -i "" "s/com.appconverter/$(jq -r '.package_name_andorid' build_data/data.json)/g" android/app/src/main/java/com/appconverter/MainActivity.java
             - sed -i "" "s/com.appconverter/$(jq -r '.package_name_andorid' build_data/data.json)/g" android/app/src/main/java/com/appconverter/MainApplication.java 
             - sed -i "" "s/com.appconverter/$(jq -r '.package_name_andorid' build_data/data.json)/g" android/app/src/main/AndroidManifest.xml
-            - sed -i "" "s/ applicationId \"com.newapp\"/applicationId "$(jq -r '.build_version_android' build_data/data.json)\"</g" ios/appconverter/info.plist
+            - sed -i "" "s/ applicationId \"com.newapp\"/applicationId \"$(jq -r '.build_version_android' build_data/data.json)\"</g" ios/appconverter/info.plist
             
             #version name 
             - sed -i "" "s/>1.0</>$(jq -r '.build_version_android' build_data/data.json)</g" ios/appconverter/info.plist
