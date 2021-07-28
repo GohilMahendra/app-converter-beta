@@ -247,6 +247,12 @@ await AdMobInterstitial.showAdAsync();
   bannerSize="fullBanner"
   adUnitID="ca-app-pub-3940256099942544/6300978111" // Test ID, Replace with your-admob-unit-id
   servePersonalizedAds // true or false
+
+  style={
+    {
+      position:"absolute"
+    }
+  }
   onDidFailToReceiveAdWithError={this.bannerError} />
 {(!offline)  &&
 <ScrollView 
@@ -256,14 +262,14 @@ refreshControl={ <RefreshControl refreshing={refr}
 enabled={pos}
 onRefresh={refc}
 ></RefreshControl>}
-style={{height:height,width:width,backgroundColor:'blue',position:'absolute'}}>
+style={{height:height,width:width,position:'absolute'}}>
 
   
              <WebView
 
 source={{uri:(route.params?.link!="" && route.params?.link !=undefined)?link:data.url}}
 ref={webviewRef}
-style={{height:height,width:width,backgroundColor:"pink"}}
+style={{height:height,width:width}}
 
 
 onLoadProgress={({nativeEvent})=>console.log(nativeEvent.progress*100)}
@@ -336,8 +342,8 @@ onLoadStart={()=>setload(true)}
     
      { data.Trial &&  
       
-       <Text style={{alignSelf:'flex-end',fontWeight:'bold',top:height/2,
-   alignSelf:"center",color:"gray",opacity:0.7,transform:[{rotateZ:'25deg'}],
+       <Text style={{alignSelf:'flex-end',fontWeight:'bold',top:height/3,
+   alignSelf:"center",justifyContent:"center",color:"gray",opacity:0.7,transform:[{rotateZ:'25deg'}],
     fontSize:35,position:"absolute"}}>#watermark</Text>
    
     }
