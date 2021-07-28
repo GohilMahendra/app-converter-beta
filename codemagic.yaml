@@ -64,7 +64,7 @@ workflows:
             
             - echo "sdk.dir=$HOME/programs/android-sdk-macosx" > "$FCI_BUILD_DIR/android/local.properties"
             - echo $(jq .'build' build_data/data.json)
-            - | #Android Build
+            - |
                 if [[ $(jq -r .'build' build_data/data.json) == "android" ]] || [[ $(jq -r ."build" build_data/data.json) == "both" ]] ; then
                 echo "block executed";
                 # build Android;
@@ -72,7 +72,7 @@ workflows:
                 ./gradlew assembleRelease;
                 fi
            
-            - | #IOS Build
+            - | 
                 if [[ $(jq -r ."build" build_data/data.json) == "ios" ]] || [[ $(jq -r ."build" build_data/data.json) == "both" ]] ; then
                 # build iOS
                 cd ios
