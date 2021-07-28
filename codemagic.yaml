@@ -46,9 +46,9 @@ workflows:
 
             #change package name ANDROID
               
-            - sed -i "" "s/com.appconverter/$(jq -r '.package_name_andorid' build_data/data.json)/g" android/app/src/main/java/generated/BasePackageList.java
-            - sed -i "" "s/com.appconverter/$(jq -r '.package_name_andorid' build_data/data.json)/g" android/app/src/main/java/MainActivity.java
-            - sed -i "" "s/com.appconverter/$(jq -r '.package_name_andorid' build_data/data.json)/g" android/app/src/main/java/MainApplication.java 
+            - sed -i "" "s/com.appconverter/$(jq -r '.package_name_andorid' build_data/data.json)/g" android/app/src/main/java/com/appconverter/generated/BasePackageList.java
+            - sed -i "" "s/com.appconverter/$(jq -r '.package_name_andorid' build_data/data.json)/g" android/app/src/main/java/com/appconverter/MainActivity.java
+            - sed -i "" "s/com.appconverter/$(jq -r '.package_name_andorid' build_data/data.json)/g" android/app/src/main/java/com/appconverter/MainApplication.java 
             - sed -i "" "s/com.appconverter/$(jq -r '.package_name_andorid' build_data/data.json)/g" android/app/src/main/AndroidManifest.xml
             - sed -i "" "s/ applicationId \"com.newapp\"/applicationId "$(jq -r '.build_version_android' build_data/data.json)\"</g" ios/appconverter/info.plist
             
