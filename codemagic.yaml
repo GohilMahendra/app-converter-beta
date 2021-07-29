@@ -44,7 +44,7 @@ workflows:
 
           
 
-            #change package name ANDROID
+             #change package name ANDROID
               
             - sed -i "" "s/com.appconverter/$(jq -r '.package_name_andorid' build_data/data.json)/g" android/app/src/main/java/com/appconverter/generated/BasePackageList.java
             - sed -i "" "s/com.appconverter/$(jq -r '.package_name_andorid' build_data/data.json)/g" android/app/src/main/java/com/appconverter/MainActivity.java
@@ -52,7 +52,7 @@ workflows:
             - sed -i "" "s/com.appconverter/$(jq -r '.package_name_andorid' build_data/data.json)/g" android/app/src/main/AndroidManifest.xml
             - sed -i "" "s/ applicationId \"com.newapp\"/applicationId \"$(jq -r '.build_version_android' build_data/data.json)\"</g" ios/appconverter/info.plist
             
-            #version name 
+             #version name 
             - sed -i "" "s/>1.0</>$(jq -r '.build_version_android' build_data/data.json)</g" ios/appconverter/info.plist
             - cat ios/appconverter/info.plist
             - sed -i "" "s/versionName \"1.0\"/versionName \"$(jq -r '.build_version_android' build_data/data.json)\"/g" android/app/build.gradle
@@ -87,7 +87,7 @@ workflows:
                 cd ios
                 pod install
                 ls
-                xcodebuild -scheme "$XCODE_SCHEME" -workspace "$XCODE_WORKSPACE.xcworkspace" -configuration Release clean archive -archivePath "Build/APPNAME.xcarchive" -sdk iphonesimulator
+                xcodebuild -scheme "$XCODE_SCHEME" -workspace "$XCODE_WORKSPACE.xcworkspace" -sdk iphonesimulator
                 xcodebuild -scheme "$XCODE_SCHEME" -workspace "$XCODE_WORKSPACE.xcworkspace" -configuration Release clean archive -archivePath "Build/APPNAME.xcarchive" CODE_SIGN_IDENTITY="" CODE_SIGNING_REQUIRED=NO CODE_SIGNING_ALLOWED=NO         
                 xcodebuild -exportArchive -archivePath build/APPNAME.xcarchive -exportOptionsPlist exportOptions.plist -exportPath build/APPNAME.ipa
                 fi 
