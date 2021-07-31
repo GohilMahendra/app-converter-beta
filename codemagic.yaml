@@ -26,12 +26,12 @@ workflows:
             #      do sed -i "" -e $'4 a\\\n'" <uses-permission android:name=\"android.permission.$(jq -r ".permissions[$i]" build_data/data.json)\" />" android/app/src/main/AndroidManifest.xml;
             #      done
             # - cat android/app/src/main/AndroidManifest.xml
-            -   cd android && chmod +x gradlew
-            - for i in $(seq 0 $(jq -r ".permissions_IOS|length-1" build_data/data.json));
-                do sed -i "" -e $'39 a\\\n'"<key>$(jq -r ".permissions_IOS[$i]" build_data/data.json)</key> " ios/appconverter/info.plist;sed -i "" -e $'40 a\\\n'"<string>permission required for$(jq -r ".permissions_IOS[$i]" build_data/data.json)</string> " ios/appconverter/info.plist;
-                done
+            # -   cd android && chmod +x gradlew
+            # - for i in $(seq 0 $(jq -r ".permissions_IOS|length-1" build_data/data.json));
+            #     do sed -i "" -e $'39 a\\\n'"<key>$(jq -r ".permissions_IOS[$i]" build_data/data.json)</key> " ios/appconverter/info.plist;sed -i "" -e $'40 a\\\n'"<string>permission required for$(jq -r ".permissions_IOS[$i]" build_data/data.json)</string> " ios/appconverter/info.plist;
+            #     done
                  
-            - cat ios/appconverter/info.plist
+            # - cat ios/appconverter/info.plist
             # - if [[ $(jq -r .rate_url build_data/data.json) != "" ]] ; then
             #   #rating added
             #   sed -i "" -e $'2 a\\\n'"import Rate from \"react-native-rate\";" screens/HomeScreen.js
@@ -46,24 +46,24 @@ workflows:
 
              #change package name ANDROID
               
-            - sed -i "" "s/com.appconverter/$(jq -r '.package_name_andorid' build_data/data.json)/g" android/app/src/main/java/com/appconverter/generated/BasePackageList.java
-            - sed -i "" "s/com.appconverter/$(jq -r '.package_name_andorid' build_data/data.json)/g" android/app/src/main/java/com/appconverter/MainActivity.java
-            - sed -i "" "s/com.appconverter/$(jq -r '.package_name_andorid' build_data/data.json)/g" android/app/src/main/java/com/appconverter/MainApplication.java 
-            - sed -i "" "s/com.appconverter/$(jq -r '.package_name_andorid' build_data/data.json)/g" android/app/src/main/AndroidManifest.xml
-            - sed -i "" "s/ applicationId \"com.newapp\"/applicationId \"$(jq -r '.build_version_android' build_data/data.json)\"</g" ios/appconverter/info.plist
+            # - sed -i "" "s/com.appconverter/$(jq -r '.package_name_andorid' build_data/data.json)/g" android/app/src/main/java/com/appconverter/generated/BasePackageList.java
+            # - sed -i "" "s/com.appconverter/$(jq -r '.package_name_andorid' build_data/data.json)/g" android/app/src/main/java/com/appconverter/MainActivity.java
+            # - sed -i "" "s/com.appconverter/$(jq -r '.package_name_andorid' build_data/data.json)/g" android/app/src/main/java/com/appconverter/MainApplication.java 
+            # - sed -i "" "s/com.appconverter/$(jq -r '.package_name_andorid' build_data/data.json)/g" android/app/src/main/AndroidManifest.xml
+            # - sed -i "" "s/ applicationId \"com.newapp\"/applicationId \"$(jq -r '.build_version_android' build_data/data.json)\"</g" ios/appconverter/info.plist
             
              #version name 
-            - sed -i "" "s/>1.0</>$(jq -r '.build_version_android' build_data/data.json)</g" ios/appconverter/info.plist
-            - cat ios/appconverter/info.plist
-            - sed -i "" "s/versionName \"1.0\"/versionName \"$(jq -r '.build_version_android' build_data/data.json)\"/g" android/app/build.gradle
-            - cat android/app/build.gradle
+            # - sed -i "" "s/>1.0</>$(jq -r '.build_version_android' build_data/data.json)</g" ios/appconverter/info.plist
+            # - cat ios/appconverter/info.plist
+            # - sed -i "" "s/versionName \"1.0\"/versionName \"$(jq -r '.build_version_android' build_data/data.json)\"/g" android/app/build.gradle
+            # - cat android/app/build.gradle
 
              #App name
-            - sed -i "" "s/appconverter/$(jq -r '.appname' build_data/data.json)/g" android/app/src/main/res/values/strings.xml
-            - sed -i "" "s/appconverter/$(jq -r '.appname' build_data/data.json)/g" android/app/src/main/res/values/strings.xml
-            - cat android/app/src/main/res/values/strings.xml
-            - sed -i "" "s/appconverter/$(jq -r '.appname' build_data/data.json)/g" ios/appconverter/info.plist
-            - cat ios/appconverter/info.plist
+            # - sed -i "" "s/appconverter/$(jq -r '.appname' build_data/data.json)/g" android/app/src/main/res/values/strings.xml
+            # - sed -i "" "s/appconverter/$(jq -r '.appname' build_data/data.json)/g" android/app/src/main/res/values/strings.xml
+            # - cat android/app/src/main/res/values/strings.xml
+            # - sed -i "" "s/appconverter/$(jq -r '.appname' build_data/data.json)/g" ios/appconverter/info.plist
+            # - cat ios/appconverter/info.plist
             
 
             # - cp ic_launcher.png android/app/src/main/res/drawable
