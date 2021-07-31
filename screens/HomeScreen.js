@@ -12,12 +12,6 @@ import  Netinfo  from "@react-native-community/netinfo";
 import { useNavigation, useRoute } from "@react-navigation/native";
 
 
-import { 
-  AdMobBanner, AdMobInterstitial, setTestDeviceIDAsync
- 
- } from "expo-ads-admob";
-import { event } from "react-native-reanimated";
-
 import Rate,{AndroidMarket} from "react-native-rate";
 
 const HomeScreen=()=>
@@ -37,17 +31,7 @@ const HomeScreen=()=>
   {
     setCurrentUrl(link)
   }
-  React.useEffect
-  (
-    ()=>
-    {
-
-      interstitial()
-
-    },[]
-  )
-
-
+ 
   React.useEffect
   (
 
@@ -114,26 +98,7 @@ const HomeScreen=()=>
   
 
 
-    const interstitial=async()=>
-    {
- 
-
-      
-    //  await setTestDeviceIDAsync('EMULATOR')
- 
-      await AdMobInterstitial.setAdUnitID('ca-app-pub-3940256099942544/1033173712'); // Test ID, Replace with your-admob-unit-id
-
-      try
-      {
-      await AdMobInterstitial.requestAdAsync();
-await AdMobInterstitial.showAdAsync();
-      }
-      catch(err)
-      {
-        console.log(err)
-      }
-    }
-
+   
 
 
 
@@ -253,17 +218,7 @@ await AdMobInterstitial.showAdAsync();
      
 
 
-       <AdMobBanner
-  bannerSize="fullBanner"
-  adUnitID="ca-app-pub-3940256099942544/6300978111" // Test ID, Replace with your-admob-unit-id
-  servePersonalizedAds // true or false
-
-  style={
-    {
-      position:"absolute"
-    }
-  }
-  onDidFailToReceiveAdWithError={this.bannerError} />
+     
 {(!offline)  &&
 <ScrollView 
 

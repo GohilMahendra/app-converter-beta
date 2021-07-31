@@ -1,6 +1,5 @@
 apply plugin: "com.android.application"
-apply from: '../../node_modules/react-native-unimodules/gradle.groovy'
- 
+
 import com.android.build.OutputFile
 
 buildscript {
@@ -142,7 +141,7 @@ android {
     }
 
     defaultConfig {
-        applicationId "com.newapp"
+        applicationId "com.appconverter"
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
         versionCode 1
@@ -203,7 +202,7 @@ dependencies {
     
     implementation "androidx.swiperefreshlayout:swiperefreshlayout:1.0.0"
 
- addUnimodulesDependencies()
+ 
   // If your app supports Android versions before Ice Cream Sandwich (API level 14)
   implementation 'com.facebook.fresco:animated-base-support:1.3.0'
 
